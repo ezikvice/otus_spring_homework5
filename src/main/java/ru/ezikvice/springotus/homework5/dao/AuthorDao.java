@@ -10,9 +10,11 @@ public interface AuthorDao {
 
     void insert(Author author);
 
-    Author getById(int id);
+    Author findById(int id);
 
-    List<Author> getByGenre(Genre genre);
+    Author findByName(String name);
 
-    List<Author> getByBook(Book book);
+    List<Author> findByGenre(Genre genre);
+
+    List<Author> findByBook(Book book);
 }

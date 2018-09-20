@@ -1,38 +1,30 @@
 package ru.ezikvice.springotus.homework5.shell;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
-import ru.ezikvice.springotus.domain.Question;
-import ru.ezikvice.springotus.domain.UserExamination;
-import ru.ezikvice.springotus.service.LoadService;
-import ru.ezikvice.springotus.service.QAService;
-
-import java.util.Map;
+import ru.ezikvice.springotus.homework5.domain.Genre;
+import ru.ezikvice.springotus.homework5.service.GenreService;
 
 @ShellComponent
 public class Commands {
-    private final LoadService loadService;
-    private final QAService qaService;
-    private String name;
+    private final GenreService genreService;
 
-    @Autowired
-    public Commands(LoadService loadService, QAService qaService) {
-        this.loadService = loadService;
-        this.qaService = qaService;
+    public Commands(GenreService genreService) {
+        this.genreService = genreService;
     }
 
-    @ShellMethod(value = "1. get name", key={"getname", "name", "n"})
-    public void getName(@ShellOption String name) {
-        this.name = name;
+    @ShellMethod(value = "Adding new genre", key = {"genreadd", "ga"})
+    public void addGenre(
+            @ShellOption int id,
+            @ShellOption String name,
+            @ShellOption String description) {
+        genreService.add(new Genre(id, name, description));
     }
 
-    @ShellMethod(value="2. examine. ", key={"test", "examine", "exam","x"})
-    public void examine() {
-        Map<Integer, Question> questionMap = loadService.loadQuestions();
-        UserExamination exam = qaService.examine(name, questionMap);
-        qaService.printResult(exam);
+    @ShellMethod(value = "Check number of genres", key = {"genrecount", "gc"})
+    public int genreCount() {
+        return genreService.count();
     }
 
 }

@@ -6,4 +6,6 @@ public interface GenreDao {
     void set(Genre genre);
 
     Genre getById(int id);
+
+    int count();
 }

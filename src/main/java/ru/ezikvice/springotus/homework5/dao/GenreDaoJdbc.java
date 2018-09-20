@@ -29,6 +29,11 @@ public class GenreDaoJdbc implements GenreDao {
         return jdbc.queryForObject("select * from genre where id = ?", new Object[]{id}, new GenreMapper());
     }
 
+    @Override
+    public int count() {
+        return jdbc.queryForObject("select count(id) from genre", Integer.class);
+    }
+
     private static class GenreMapper implements RowMapper<Genre> {
 
         @Override

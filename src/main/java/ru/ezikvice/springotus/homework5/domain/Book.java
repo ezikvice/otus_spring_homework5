@@ -8,6 +8,7 @@ public class Book {
     private String name;
     private String description;
     private Set<Author> authors;
+    private Set<Genre> genres;
 
     public Book(int id, String name, String description) {
         this.id = id;
@@ -47,4 +48,11 @@ public class Book {
         this.authors.add(author);
     }
 
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
+    }
 }
