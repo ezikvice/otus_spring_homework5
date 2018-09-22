@@ -55,4 +55,8 @@ public class Book {
     public void setGenres(Set<Genre> genres) {
         this.genres = genres;
     }
+
+    public void addGenre(Genre genre) {
+        this.genres.add(genre);
+    }
 }

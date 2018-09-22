@@ -1,0 +1,26 @@
+# Thanks to Mkyong for mysql and hikari settings
+# http://www.mkyong.com/spring-boot/spring-boot-jdbc-mysql-hikaricp-example/
+
+#disbale Spring banner
+# By quoting the value, you disable yaml's automatic-cast-to-boolean feature.
+# https://github.com/spring-projects/spring-boot/issues/4600#issuecomment-219687848
+spring:
+  main:
+    banner-mode: 'OFF'
+
+
+  datasource:
+    url: jdbc:mysql://localhost/otus_examples?useSSL=false
+    username: root
+    password: qasd
+    driver-class-name: com.mysql.jdbc.Driver
+    initialization-mode: ALWAYS
+
+  # HikariCP settings
+  # spring.datasource.hikari.*
+
+  #60 sec
+    hikari:
+      connection-timeout: 60000
+  # max 5
+      maximum-pool-size: 5

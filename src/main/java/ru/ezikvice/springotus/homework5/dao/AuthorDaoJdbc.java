@@ -20,29 +20,25 @@ public class AuthorDaoJdbc implements AuthorDao {
     }
 
     @Override
+    public int count() {
+        return jdbc.queryForObject("select count(id) from author", Integer.class);
+    }
+
+    @Override
     public void insert(Author author) {
         jdbc.update("insert into author (id, name) values (?, ?)", author.getId(), author.getName());
     }
 
     @Override
     public Author findById(int id) {
-        return null;
+        return jdbc.queryForObject("select * from author where id = ?", new Object[]{id}, new AuthorMapper());
     }
 
     @Override
     public Author findByName(String name) {
-        return null;
+        return jdbc.queryForObject("select * from author where name like %?%", new Object[]{name}, new AuthorMapper());
     }
 
-    @Override
-    public List<Author> findByGenre(Genre genre) {
-        return null;
-    }
-
-    @Override
-    public List<Author> findByBook(Book book) {
-        return null;
-    }
 
     private static class AuthorMapper implements RowMapper<Author> {
 

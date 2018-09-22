@@ -8,13 +8,11 @@ import java.util.List;
 
 public interface AuthorDao {
 
+    int count();
+
     void insert(Author author);
 
     Author findById(int id);
 
     Author findByName(String name);
-
-    List<Author> findByGenre(Genre genre);
-
-    List<Author> findByBook(Book book);
 }

@@ -21,23 +21,19 @@ public class BookDaoJdbc implements BookDao {
     }
 
     @Override
+    public int count() {
+        return jdbc.queryForObject("select count(id) from book", Integer.class);
+    }
+
+    @Override
     public void insert(Book book) {
-
-    }
-
-    @Override
-    public List<Book> getByAuthor(Author author) {
-        return null;
-    }
-
-    @Override
-    public List<Book> getByGenre(Genre genre) {
-        return null;
+        jdbc.update("insert into book (id, name, description) values(?, ?, ?)",
+                book.getId(), book.getName(), book.getDescription());
     }
 
     @Override
     public Book getById(int id) {
-        return null;
+        return jdbc.queryForObject("select * from book where id = ?", new Object[]{id}, new BookMapper());
     }
 
     private static class BookMapper implements RowMapper<Book> {

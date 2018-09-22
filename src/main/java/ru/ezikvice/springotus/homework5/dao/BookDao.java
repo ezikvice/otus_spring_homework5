@@ -8,11 +8,10 @@ import java.util.List;
 
 public interface BookDao {
 
+    int count();
+
     void insert(Book book);
 
-    List<Book> getByAuthor(Author author);
-
-    List<Book> getByGenre(Genre genre);
-
     Book getById(int id);
+
 }

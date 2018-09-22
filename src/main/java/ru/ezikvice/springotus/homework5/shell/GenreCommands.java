@@ -7,14 +7,14 @@ import ru.ezikvice.springotus.homework5.domain.Genre;
 import ru.ezikvice.springotus.homework5.service.GenreService;
 
 @ShellComponent
-public class Commands {
+public class GenreCommands {
     private final GenreService genreService;
 
-    public Commands(GenreService genreService) {
+    public GenreCommands(GenreService genreService) {
         this.genreService = genreService;
     }
 
-    @ShellMethod(value = "Adding new genre", key = {"genreadd", "ga"})
+    @ShellMethod(value = "Adding new genre", key = {"add-genre", "ga"})
     public void addGenre(
             @ShellOption int id,
             @ShellOption String name,
@@ -22,9 +22,13 @@ public class Commands {
         genreService.add(new Genre(id, name, description));
     }
 
-    @ShellMethod(value = "Check number of genres", key = {"genrecount", "gc"})
-    public int genreCount() {
+    @ShellMethod(value = "Check number of genres", key = {"count-genres", "gc"})
+    public int countGenres() {
         return genreService.count();
     }
 
+    @ShellMethod(value = "Find Genre by id", key = {"find-genre-by-id", "gfi"})
+    public Genre findById(int id) {
+        return genreService.find(id);
+    }
 }
