@@ -9,7 +9,9 @@ import ru.ezikvice.springotus.homework5.domain.Genre;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class BookGenreDaoJdbc implements BookGenreDao {
@@ -39,10 +41,26 @@ public class BookGenreDaoJdbc implements BookGenreDao {
 
     @Override
     public List<Genre> getByBook(Book book) {
-        return jdbc.queryForList("select * from genre " +
-                "where genre_id in (" +
+
+        List<Genre> genres = new ArrayList<>();
+        List<Map<String, Object>> jdbcList = jdbc.queryForList("select * from genre " +
+                "where id in (" +
                 " select genre_id from book_genre " +
-                "   where book_id = ?)", new Object[]{book.getId()}, Genre.class);
+                "   where book_id = ?)", new Object[]{book.getId()});
+
+        for (Map row : jdbcList) {
+            genres.add(new Genre(
+                    (Integer)row.get("id"),
+                    (String)row.get("name"),
+                    (String)row.get("description")
+                    ));
+        }
+
+        return genres;
+//        return jdbc.queryForList("select * from genre " +
+//                "where id in (" +
+//                " select genre_id from book_genre " +
+//                "   where book_id = ?)", new Object[]{book.getId()}, Genre.class);
     }
 
     private static class BookGenreMapper implements RowMapper<BookGenre> {

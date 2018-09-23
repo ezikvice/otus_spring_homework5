@@ -18,6 +18,8 @@ public interface BookService {
 
     void addGenre(Book book, Genre genre);
 
+    void addGenre(int bookId, int genreId);
+
     List<Genre> getGenres(Book book);
 
     List<Genre> getGenres(int bookId);

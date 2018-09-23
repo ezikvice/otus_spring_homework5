@@ -21,4 +21,12 @@ public class Author {
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

@@ -1,5 +1,6 @@
 package ru.ezikvice.springotus.homework5.domain;
 
+import java.util.List;
 import java.util.Set;
 
 public class Book {
@@ -8,7 +9,7 @@ public class Book {
     private String name;
     private String description;
     private Set<Author> authors;
-    private Set<Genre> genres;
+    private List<Genre> genres;
 
     public Book(int id, String name, String description) {
         this.id = id;
@@ -48,15 +49,26 @@ public class Book {
         this.authors.add(author);
     }
 
-    public Set<Genre> getGenres() {
+    public List<Genre> getGenres() {
         return genres;
     }
 
-    public void setGenres(Set<Genre> genres) {
+    public void setGenres(List<Genre> genres) {
         this.genres = genres;
     }
 
     public void addGenre(Genre genre) {
         this.genres.add(genre);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", authors=" + authors +
+                ", genres=" + genres +
+                '}';
     }
 }

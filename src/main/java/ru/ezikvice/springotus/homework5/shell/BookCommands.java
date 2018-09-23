@@ -42,7 +42,13 @@ public class BookCommands {
         return bookService.getGenres(bookId);
     }
 
-//    @ShellMethod(value = "Find author by id", key = {"find-author-by-id", "afi"})
+
+    @ShellMethod(value = "Add the genre to the book", key = {"book-add-genre", "bag"})
+    public void addGenreToBook(int bookId, int genreId) {
+        bookService.addGenre(bookId, genreId);
+    }
+
+    //    @ShellMethod(value = "Find author by id", key = {"find-author-by-id", "afi"})
 //    public Author findById(int id) {
 //        return authorService.findById(id);
 //    }

@@ -7,6 +7,7 @@ import ru.ezikvice.springotus.homework5.domain.Author;
 import ru.ezikvice.springotus.homework5.domain.Book;
 import ru.ezikvice.springotus.homework5.domain.Genre;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -32,7 +33,12 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book findById(int bookId) {
-        return dao.getById(bookId);
+        Book book = dao.getById(bookId);
+
+        List<Genre> genres = bookGenreDao.getByBook(book);
+        book.setGenres(genres);
+
+        return book;
     }
 
     @Override
@@ -43,6 +49,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public void addGenre(Book book, Genre genre) {
         bookGenreDao.add(book, genre);
+    }
+
+    @Override
+    public void addGenre(int bookId, int genreId) {
+        bookGenreDao.add(bookId, genreId);
     }
 
     @Override
