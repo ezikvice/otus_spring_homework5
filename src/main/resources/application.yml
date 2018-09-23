@@ -14,7 +14,7 @@ spring:
     username: root
     password: qasd
     driver-class-name: com.mysql.jdbc.Driver
-    initialization-mode: NEVER
+    initialization-mode: always
 
   # HikariCP settings
   # spring.datasource.hikari.*
@@ -22,5 +22,4 @@ spring:
   #60 sec
     hikari:
       connection-timeout: 60000
-  # max 5
-      maximum-pool-size: 5
+      maximum-pool-size: 10
