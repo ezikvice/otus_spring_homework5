@@ -1,14 +1,13 @@
 package ru.ezikvice.springotus.homework5.domain;
 
 import java.util.List;
-import java.util.Set;
 
 public class Book {
 
     private final int id;
     private String name;
     private String description;
-    private Set<Author> authors;
+    private List<Author> authors;
     private List<Genre> genres;
 
     public Book(int id, String name, String description) {
@@ -37,11 +36,11 @@ public class Book {
         return id;
     }
 
-    public Set<Author> getAuthors() {
+    public List<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(Set<Author> authors) {
+    public void setAuthors(List<Author> authors) {
         this.authors = authors;
     }
 

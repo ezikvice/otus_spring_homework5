@@ -48,6 +48,11 @@ public class BookCommands {
         bookService.addGenre(bookId, genreId);
     }
 
+    @ShellMethod(value = "Add the author to the book", key = {"book-add-author", "baa"})
+    public void addAuthorToBook(int bookId, int authorId) {
+        bookService.addAuthor(bookId, authorId);
+    }
+
     //    @ShellMethod(value = "Find author by id", key = {"find-author-by-id", "afi"})
 //    public Author findById(int id) {
 //        return authorService.findById(id);

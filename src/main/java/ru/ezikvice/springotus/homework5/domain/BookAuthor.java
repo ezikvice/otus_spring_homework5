@@ -7,6 +7,12 @@ public class BookAuthor {
 
     private int authorId;
 
+    public BookAuthor(int id, int bookId, int authorId) {
+        this.id = id;
+        this.bookId = bookId;
+        this.authorId = authorId;
+    }
+
     public int getId() {
         return id;
     }

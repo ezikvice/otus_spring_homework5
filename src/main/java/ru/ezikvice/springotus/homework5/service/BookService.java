@@ -14,7 +14,9 @@ public interface BookService {
 
     Book findById(int bookId);
 
-    void addAuthor(Author author);
+    void addAuthor(Book book, Author author);
+
+    void addAuthor(int bookId, int authorId);
 
     void addGenre(Book book, Genre genre);
 

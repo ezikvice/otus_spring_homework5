@@ -57,14 +57,9 @@ public class BookGenreDaoJdbc implements BookGenreDao {
         }
 
         return genres;
-//        return jdbc.queryForList("select * from genre " +
-//                "where id in (" +
-//                " select genre_id from book_genre " +
-//                "   where book_id = ?)", new Object[]{book.getId()}, Genre.class);
     }
 
     private static class BookGenreMapper implements RowMapper<BookGenre> {
-
         @Override
         public BookGenre mapRow(ResultSet resultSet, int i) throws SQLException {
             int id = resultSet.getInt("id");
@@ -73,6 +68,5 @@ public class BookGenreDaoJdbc implements BookGenreDao {
             return new BookGenre(id, bookId, genreId);
         }
     }
-
 
 }
