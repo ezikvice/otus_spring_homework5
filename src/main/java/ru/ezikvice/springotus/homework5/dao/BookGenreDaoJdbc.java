@@ -9,6 +9,7 @@ import ru.ezikvice.springotus.homework5.domain.Genre;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @Repository
 public class BookGenreDaoJdbc implements BookGenreDao {
@@ -21,13 +22,24 @@ public class BookGenreDaoJdbc implements BookGenreDao {
 
     @Override
     public void add(Book book, Genre genre) {
-        jdbc.update("insert into book_genre (id, book_id, genre_id) values(?, ?, ?)",
-                book.getId(), book.getName(), book.getDescription());
+        jdbc.update("insert into book_genre (book_id, genre_id) values (?, ?)",
+                book.getId(), genre.getId());
+    }
+
+    @Override
+    public void add(int bookId, int genreId) {
+        jdbc.update("insert into book_genre (book_id, genre_id) values (?, ?)",
+                bookId, genreId);
     }
 
     @Override
     public BookGenre getById(int id) {
         return jdbc.queryForObject("select * from book_genre where id = ?", new Object[]{id}, new BookGenreMapper());
+    }
+
+    @Override
+    public List<Genre> getByBook(Book book) {
+        return jdbc.queryForList("select * from genre where book_id = ?", new Object[]{book.getId()}, Book.class);
     }
 
     private static class BookGenreMapper implements RowMapper<BookGenre> {

@@ -14,5 +14,5 @@ public interface BookGenreDao {
 
     BookGenre getById(int id);
 
-    List<BookGenre> getByBook(Book book);
+    List<Genre> getByBook(Book book);
 }
