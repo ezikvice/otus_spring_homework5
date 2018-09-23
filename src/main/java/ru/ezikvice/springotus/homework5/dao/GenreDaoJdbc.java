@@ -20,8 +20,13 @@ public class GenreDaoJdbc implements GenreDao {
 
     @Override
     public void set(Genre genre) {
-        jdbc.update("insert into genre (name, description) values(?, ?)",
-                genre.getName(), genre.getDescription());
+        if (genre.getId() != 0) {
+            jdbc.update("insert into genre (id, name, description) values(?, ?, ?)",
+                    genre.getId(), genre.getName(), genre.getDescription());
+        } else {
+            jdbc.update("insert into genre (name, description) values(?, ?)",
+                    genre.getName(), genre.getDescription());
+        }
     }
 
     @Override

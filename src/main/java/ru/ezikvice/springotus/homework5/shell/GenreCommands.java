@@ -16,10 +16,9 @@ public class GenreCommands {
 
     @ShellMethod(value = "Adding new genre", key = {"add-genre", "ga"})
     public void addGenre(
-            @ShellOption int id,
             @ShellOption String name,
             @ShellOption String description) {
-        genreService.add(new Genre(id, name, description));
+        genreService.add(new Genre(name, description));
     }
 
     @ShellMethod(value = "Check number of genres", key = {"count-genres", "gc"})
