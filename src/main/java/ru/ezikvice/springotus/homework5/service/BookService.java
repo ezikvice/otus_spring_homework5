@@ -25,4 +25,6 @@ public interface BookService {
     List<Genre> getGenres(Book book);
 
     List<Genre> getGenres(int bookId);
+
+    List<Author> getAuthors(int bookId);
 }

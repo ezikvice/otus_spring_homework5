@@ -3,6 +3,7 @@ package ru.ezikvice.springotus.homework5.shell;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
+import ru.ezikvice.springotus.homework5.domain.Author;
 import ru.ezikvice.springotus.homework5.domain.Book;
 import ru.ezikvice.springotus.homework5.domain.Genre;
 import ru.ezikvice.springotus.homework5.service.BookService;
@@ -32,10 +33,10 @@ public class BookCommands {
         return bookService.findById(bookId);
     }
 
-//    @ShellMethod(value = "Get list of authors", key = {"book-get-authors", "bga"})
-//    public int getAuthors() {
-//        return bookService.count();
-//    }
+    @ShellMethod(value = "Get list of authors", key = {"book-get-authors", "bga"})
+    public List<Author> getAuthors(@ShellOption int bookId) {
+        return bookService.getAuthors(bookId);
+    }
 
     @ShellMethod(value = "Get list of genres", key = {"book-get-genres", "bgg"})
     public List<Genre> getGenres(@ShellOption int bookId) {
