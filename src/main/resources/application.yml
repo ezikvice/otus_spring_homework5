@@ -10,11 +10,11 @@ spring:
 
 
   datasource:
-    url: jdbc:mysql://localhost/otus_examples?useSSL=false
+    url: jdbc:mysql://localhost:3306/otus_examples?useSSL=false
     username: root
     password: qasd
     driver-class-name: com.mysql.jdbc.Driver
-    initialization-mode: ALWAYS
+    initialization-mode: NEVER
 
   # HikariCP settings
   # spring.datasource.hikari.*

@@ -3,13 +3,10 @@ package ru.ezikvice.springotus.homework5.dao;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import ru.ezikvice.springotus.homework5.domain.Author;
 import ru.ezikvice.springotus.homework5.domain.Book;
-import ru.ezikvice.springotus.homework5.domain.Genre;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 @Repository
 public class BookDaoJdbc implements BookDao {
@@ -43,14 +40,9 @@ public class BookDaoJdbc implements BookDao {
             int id = resultSet.getInt("id");
             String name = resultSet.getString("name");
             String description = resultSet.getString("description");
-            Book book = new Book(id, name, description);
-
-            return book;
-
+            return new Book(id, name, description);
         }
     }
-
-
 
 
 }

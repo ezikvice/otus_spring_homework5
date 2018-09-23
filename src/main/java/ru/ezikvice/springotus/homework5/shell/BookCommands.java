@@ -3,10 +3,11 @@ package ru.ezikvice.springotus.homework5.shell;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
-import ru.ezikvice.springotus.homework5.domain.Author;
 import ru.ezikvice.springotus.homework5.domain.Book;
-import ru.ezikvice.springotus.homework5.service.AuthorService;
+import ru.ezikvice.springotus.homework5.domain.Genre;
 import ru.ezikvice.springotus.homework5.service.BookService;
+
+import java.util.List;
 
 @ShellComponent
 public class BookCommands {
@@ -26,23 +27,28 @@ public class BookCommands {
         bookService.add(new Book(id, name, description));
     }
 
+    @ShellMethod(value = "Getting book by id", key = {"get-book", "bg"})
+    public Book getBook(@ShellOption int bookId) {
+        return bookService.findById(bookId);
+    }
+
 //    @ShellMethod(value = "Get list of authors", key = {"book-get-authors", "bga"})
 //    public int getAuthors() {
 //        return bookService.count();
 //    }
 
     @ShellMethod(value = "Get list of genres", key = {"book-get-genres", "bgg"})
-    public int getGenres() {
-        return bookService.;
+    public List<Genre> getGenres(@ShellOption int bookId) {
+        return bookService.getGenres(bookId);
     }
 
-    @ShellMethod(value = "Find author by id", key = {"find-author-by-id", "afi"})
-    public Author findById(int id) {
-        return authorService.findById(id);
-    }
-
-    @ShellMethod(value = "Find author by name", key = {"findById-author-by-name", "afn"})
-    public Author findByName(String name) {
-        return authorService.findByName(name);
-    }
+//    @ShellMethod(value = "Find author by id", key = {"find-author-by-id", "afi"})
+//    public Author findById(int id) {
+//        return authorService.findById(id);
+//    }
+//
+//    @ShellMethod(value = "Find author by name", key = {"findById-author-by-name", "afn"})
+//    public Author findByName(String name) {
+//        return authorService.findByName(name);
+//    }
 }

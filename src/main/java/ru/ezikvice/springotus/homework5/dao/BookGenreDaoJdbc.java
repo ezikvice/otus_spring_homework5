@@ -39,7 +39,10 @@ public class BookGenreDaoJdbc implements BookGenreDao {
 
     @Override
     public List<Genre> getByBook(Book book) {
-        return jdbc.queryForList("select * from genre where book_id = ?", new Object[]{book.getId()}, Book.class);
+        return jdbc.queryForList("select * from genre " +
+                "where genre_id in (" +
+                " select genre_id from book_genre " +
+                "   where book_id = ?)", new Object[]{book.getId()}, Genre.class);
     }
 
     private static class BookGenreMapper implements RowMapper<BookGenre> {
@@ -49,14 +52,9 @@ public class BookGenreDaoJdbc implements BookGenreDao {
             int id = resultSet.getInt("id");
             int bookId = resultSet.getInt("book_id");
             int genreId = resultSet.getInt("genre_id");
-            BookGenre bookGenre = new BookGenre(id, bookId, genreId);
-
-            return bookGenre;
-
+            return new BookGenre(id, bookId, genreId);
         }
     }
-
-
 
 
 }

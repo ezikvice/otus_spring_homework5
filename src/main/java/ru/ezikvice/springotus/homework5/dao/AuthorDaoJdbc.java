@@ -4,12 +4,9 @@ import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.ezikvice.springotus.homework5.domain.Author;
-import ru.ezikvice.springotus.homework5.domain.Book;
-import ru.ezikvice.springotus.homework5.domain.Genre;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 @Repository
 public class AuthorDaoJdbc implements AuthorDao {
@@ -36,7 +33,7 @@ public class AuthorDaoJdbc implements AuthorDao {
 
     @Override
     public Author findByName(String name) {
-        return jdbc.queryForObject("select * from author where name like %?%", new Object[]{name}, new AuthorMapper());
+        return jdbc.queryForObject("select * from author where name like ?", new Object[]{name}, new AuthorMapper());
     }
 
 
