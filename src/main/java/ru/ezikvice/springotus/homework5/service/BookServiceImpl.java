@@ -53,6 +53,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public void addAuthor(int bookId, int authorId) {
+        bookAuthorDao.add(bookId, authorId);
+    }
+
+    @Override
     public void addGenre(Book book, Genre genre) {
         bookGenreDao.add(book, genre);
     }
