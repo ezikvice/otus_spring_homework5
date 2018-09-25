@@ -2,6 +2,8 @@ package ru.ezikvice.springotus.homework5.service;
 
 import ru.ezikvice.springotus.homework5.domain.Author;
 
+import java.util.List;
+
 public interface AuthorService {
 
     int count();
@@ -10,6 +12,6 @@ public interface AuthorService {
 
     Author findById(int id);
 
-    Author findByName(String name);
+    List<Author> findByName(String name);
 
 }

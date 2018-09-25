@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import ru.ezikvice.springotus.homework5.dao.AuthorDao;
 import ru.ezikvice.springotus.homework5.domain.Author;
 
+import java.util.List;
+
 @Service
 public class AuthorServiceImpl implements AuthorService {
 
@@ -29,7 +31,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Author findByName(String name) {
+    public List<Author> findByName(String name) {
         return dao.findByName(name);
     }
 }

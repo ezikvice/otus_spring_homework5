@@ -7,6 +7,7 @@ import ru.ezikvice.springotus.homework5.domain.Author;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @Repository
 public class AuthorDaoJdbc implements AuthorDao {
@@ -23,7 +24,11 @@ public class AuthorDaoJdbc implements AuthorDao {
 
     @Override
     public void insert(Author author) {
-        jdbc.update("insert into author (name) values (?)", author.getName());
+        if (author.getId() == 0) {
+            jdbc.update("insert into author (name) values (?)", author.getName());
+        } else {
+            jdbc.update("insert into author (id, name) values (?, ?)", author.getId(), author.getName());
+        }
     }
 
     @Override
@@ -32,8 +37,8 @@ public class AuthorDaoJdbc implements AuthorDao {
     }
 
     @Override
-    public Author findByName(String name) {
-        return jdbc.queryForObject("select * from author where name like ?", new Object[]{name}, new AuthorMapper());
+    public List<Author> findByName(String name) {
+        return jdbc.query("select * from author where name like ?", new Object[]{"%" + name + "%"}, new AuthorMapper());
     }
 
 

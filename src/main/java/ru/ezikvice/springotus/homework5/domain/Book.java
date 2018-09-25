@@ -1,5 +1,9 @@
 package ru.ezikvice.springotus.homework5.domain;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import java.util.Collections;
 import java.util.List;
 
 public class Book {
@@ -7,8 +11,8 @@ public class Book {
     private final int id;
     private String name;
     private String description;
-    private List<Author> authors;
-    private List<Genre> genres;
+    private List<Author> authors = Collections.emptyList();
+    private List<Genre> genres = Collections.emptyList();
 
     public Book(int id, String name, String description) {
         this.id = id;
@@ -58,6 +62,34 @@ public class Book {
 
     public void addGenre(Genre genre) {
         this.genres.add(genre);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        return new EqualsBuilder()
+                .append(getId(), book.getId())
+                .append(getName(), book.getName())
+                .append(getDescription(), book.getDescription())
+                .append(getAuthors(), book.getAuthors())
+                .append(getGenres(), book.getGenres())
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(getId())
+                .append(getName())
+                .append(getDescription())
+                .append(getAuthors())
+                .append(getGenres())
+                .toHashCode();
     }
 
     @Override
