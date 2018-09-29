@@ -1,55 +1,39 @@
 package ru.ezikvice.springotus.homework5.dao;
 
-import org.springframework.jdbc.core.JdbcOperations;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.ezikvice.springotus.homework5.domain.Author;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
 public class AuthorRepositoryJdbc implements AuthorRepository {
-    private final JdbcOperations jdbc;
 
-    public AuthorRepositoryJdbc(JdbcOperations jdbcOperations) {
-        jdbc = jdbcOperations;
-    }
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
     public int count() {
-        return jdbc.queryForObject("select count(id) from author", Integer.class);
+        Query query = em.createQuery("SELECT COUNT(a.id) FROM author a");
+        return (int) query.getSingleResult();
     }
 
     @Override
     public void insert(Author author) {
-        if (author.getId() == 0) {
-            jdbc.update("insert into author (name) values (?)", author.getName());
-        } else {
-            jdbc.update("insert into author (id, name) values (?, ?)", author.getId(), author.getName());
-        }
+        em.persist(author);
     }
 
     @Override
     public Author findById(int id) {
-        return jdbc.queryForObject("select * from author where id = ?", new Object[]{id}, new AuthorMapper());
+        return em.find(Author.class, id);
     }
 
     @Override
     public List<Author> findByName(String name) {
-        return jdbc.query("select * from author where name like ?", new Object[]{"%" + name + "%"}, new AuthorMapper());
-    }
-
-
-    private static class AuthorMapper implements RowMapper<Author> {
-
-        @Override
-        public Author mapRow(ResultSet resultSet, int i) throws SQLException {
-            int id = resultSet.getInt("id");
-            String name = resultSet.getString("name");
-            return new Author(id, name);
-        }
+        Query query = em.createQuery("SELECT * FROM Author a WHERE a.name = :name");
+        return (List<Author>) query.getResultList();
     }
 
 }

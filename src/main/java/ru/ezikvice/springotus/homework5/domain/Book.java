@@ -3,14 +3,23 @@ package ru.ezikvice.springotus.homework5.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import javax.persistence.*;
 import java.util.Collections;
 import java.util.List;
 
+@Entity
+@Table(name = "book")
 public class Book {
 
+    @Id
+    @GeneratedValue
     private final int id;
+    @Column
     private String name;
+    @Column
     private String description;
+
+
     private List<Author> authors = Collections.emptyList();
     private List<Genre> genres = Collections.emptyList();
 

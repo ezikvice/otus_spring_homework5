@@ -1,8 +1,18 @@
 package ru.ezikvice.springotus.homework5.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class Genre {
+    @Id
     private int id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "description")
     private String description;
 
     public Genre(String name, String description) {
