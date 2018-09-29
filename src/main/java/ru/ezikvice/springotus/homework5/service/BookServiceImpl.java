@@ -2,7 +2,7 @@ package ru.ezikvice.springotus.homework5.service;
 
 import org.springframework.stereotype.Service;
 import ru.ezikvice.springotus.homework5.dao.BookAuthorDao;
-import ru.ezikvice.springotus.homework5.dao.BookDao;
+import ru.ezikvice.springotus.homework5.dao.BookRepository;
 import ru.ezikvice.springotus.homework5.dao.BookGenreDao;
 import ru.ezikvice.springotus.homework5.domain.Author;
 import ru.ezikvice.springotus.homework5.domain.Book;
@@ -13,11 +13,11 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookService {
 
-    private final BookDao dao;
+    private final BookRepository dao;
     private final BookGenreDao bookGenreDao;
     private final BookAuthorDao bookAuthorDao;
 
-    public BookServiceImpl(BookDao dao, BookGenreDao bookGenreDao, BookAuthorDao bookAuthorDao) {
+    public BookServiceImpl(BookRepository dao, BookGenreDao bookGenreDao, BookAuthorDao bookAuthorDao) {
         this.dao = dao;
         this.bookGenreDao = bookGenreDao;
         this.bookAuthorDao = bookAuthorDao;

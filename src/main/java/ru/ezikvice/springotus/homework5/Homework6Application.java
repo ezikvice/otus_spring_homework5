@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.sql.SQLException;
 
 @SpringBootApplication
-public class Homework5Application {
+public class Homework6Application {
 
     public static void main(String[] args) throws SQLException {
-        SpringApplication.run(Homework5Application.class);
+        SpringApplication.run(Homework6Application.class);
     }
 }

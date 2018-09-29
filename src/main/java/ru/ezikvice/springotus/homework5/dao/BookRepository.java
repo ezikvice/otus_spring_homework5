@@ -2,7 +2,7 @@ package ru.ezikvice.springotus.homework5.dao;
 
 import ru.ezikvice.springotus.homework5.domain.Book;
 
-public interface BookDao {
+public interface BookRepository {
 
     int count();
 

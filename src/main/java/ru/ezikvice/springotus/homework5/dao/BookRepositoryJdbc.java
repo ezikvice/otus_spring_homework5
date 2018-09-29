@@ -1,25 +1,31 @@
 package ru.ezikvice.springotus.homework5.dao;
 
-import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.ezikvice.springotus.homework5.domain.Book;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Repository
-public class BookDaoJdbc implements BookDao {
+public class BookRepositoryJdbc implements BookRepository {
 
-    private final JdbcOperations jdbc;
+    //    private final JdbcOperations jdbc;
+    @PersistenceContext
+    private EntityManager em;
 
-    public BookDaoJdbc(JdbcOperations jdbc) {
-        this.jdbc = jdbc;
-    }
+//    public BookRepositoryJdbc(JdbcOperations jdbc) {
+//        this.jdbc = jdbc;
+//    }
 
     @Override
     public int count() {
-        return jdbc.queryForObject("select count(id) from book", Integer.class);
+        Query query = em.createQuery("SELECT COUNT(b.id) FROM BOOK b");
+
+        return (int) query.getSingleResult();
     }
 
     @Override

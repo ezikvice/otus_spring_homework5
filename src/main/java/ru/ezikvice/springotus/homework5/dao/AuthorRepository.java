@@ -4,7 +4,7 @@ import ru.ezikvice.springotus.homework5.domain.Author;
 
 import java.util.List;
 
-public interface AuthorDao {
+public interface AuthorRepository {
 
     int count();
 

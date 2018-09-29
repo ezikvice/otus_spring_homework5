@@ -1,7 +1,7 @@
 package ru.ezikvice.springotus.homework5.service;
 
 import org.springframework.stereotype.Service;
-import ru.ezikvice.springotus.homework5.dao.AuthorDao;
+import ru.ezikvice.springotus.homework5.dao.AuthorRepository;
 import ru.ezikvice.springotus.homework5.domain.Author;
 
 import java.util.List;
@@ -9,9 +9,9 @@ import java.util.List;
 @Service
 public class AuthorServiceImpl implements AuthorService {
 
-    private final AuthorDao dao;
+    private final AuthorRepository dao;
 
-    public AuthorServiceImpl(AuthorDao dao) {
+    public AuthorServiceImpl(AuthorRepository dao) {
         this.dao = dao;
     }
 

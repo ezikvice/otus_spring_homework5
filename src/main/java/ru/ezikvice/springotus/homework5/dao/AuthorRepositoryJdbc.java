@@ -10,10 +10,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
-public class AuthorDaoJdbc implements AuthorDao {
+public class AuthorRepositoryJdbc implements AuthorRepository {
     private final JdbcOperations jdbc;
 
-    public AuthorDaoJdbc(JdbcOperations jdbcOperations) {
+    public AuthorRepositoryJdbc(JdbcOperations jdbcOperations) {
         jdbc = jdbcOperations;
     }
 

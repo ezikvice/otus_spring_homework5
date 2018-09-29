@@ -9,11 +9,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Repository
-public class GenreDaoJdbc implements GenreDao {
+public class GenreRepositoryJdbc implements GenreRepository {
 
     private final JdbcOperations jdbc;
 
-    public GenreDaoJdbc(JdbcOperations jdbcOperations) {
+    public GenreRepositoryJdbc(JdbcOperations jdbcOperations) {
         jdbc = jdbcOperations;
     }
 

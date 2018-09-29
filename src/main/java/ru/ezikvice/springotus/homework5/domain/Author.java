@@ -3,9 +3,17 @@ package ru.ezikvice.springotus.homework5.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "author")
 public class Author {
 
+    @Id
+    @GeneratedValue
     private int id;
+
+    @Column(name = "name")
     private String name;
 
     public Author(String name) {
