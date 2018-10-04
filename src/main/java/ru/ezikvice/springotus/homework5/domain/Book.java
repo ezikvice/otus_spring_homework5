@@ -13,15 +13,35 @@ public class Book {
 
     @Id
     @GeneratedValue
-    private final int id;
+    private int id;
     @Column
     private String name;
     @Column
     private String description;
 
-
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "book_author",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
     private List<Author> authors = Collections.emptyList();
+
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "book_genre",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
     private List<Genre> genres = Collections.emptyList();
+
+    public Book() {
+    }
 
     public Book(int id, String name, String description) {
         this.id = id;

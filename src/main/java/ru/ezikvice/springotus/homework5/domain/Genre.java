@@ -1,9 +1,7 @@
 package ru.ezikvice.springotus.homework5.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
@@ -15,9 +13,15 @@ public class Genre {
     @Column(name = "description")
     private String description;
 
+    @ManyToMany(mappedBy = "genres")
+    private List<Book> books;
+
     public Genre(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+
+    public Genre() {
     }
 
     public Genre(int id, String name, String description) {
@@ -39,6 +43,14 @@ public class Genre {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     public int getId() {

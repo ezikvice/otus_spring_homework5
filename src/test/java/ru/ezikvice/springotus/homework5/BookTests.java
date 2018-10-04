@@ -33,7 +33,7 @@ public class BookTests {
 //        List<Author> authors = Collections.emptyList();
 //        List<Genre> genres = Collections.emptyList();
 //        testBook.setAuthors(authors);
-//        testBook.setGenres(genres);
+//        testBook.setBooks(genres);
         bookService.add(testBook);
         Book foundBook = bookService.findById(42);
         Assert.assertEquals(foundBook, testBook);

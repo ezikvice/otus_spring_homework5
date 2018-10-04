@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "author")
@@ -15,6 +16,12 @@ public class Author {
 
     @Column(name = "name")
     private String name;
+
+    @ManyToMany(mappedBy = "authors")
+    private List<Book> books;
+
+    public Author() {
+    }
 
     public Author(String name) {
         this.name = name;
@@ -35,6 +42,14 @@ public class Author {
 
     public int getId() {
         return id;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     @Override

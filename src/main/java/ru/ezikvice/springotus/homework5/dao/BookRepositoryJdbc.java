@@ -1,7 +1,9 @@
 package ru.ezikvice.springotus.homework5.dao;
 
 import org.springframework.stereotype.Repository;
+import ru.ezikvice.springotus.homework5.domain.Author;
 import ru.ezikvice.springotus.homework5.domain.Book;
+import ru.ezikvice.springotus.homework5.domain.Genre;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,7 +22,19 @@ public class BookRepositoryJdbc implements BookRepository {
     }
 
     @Override
-    public void insert(Book book) {
+    public void save(Book book) {
+        em.persist(book);
+    }
+
+    @Override
+    public void saveAuthor(Book book, Author author) {
+        book.addAuthor(author);
+        em.persist(book);
+    }
+
+    @Override
+    public void saveGenre(Book book, Genre genre) {
+        book.addGenre(genre);
         em.persist(book);
     }
 
