@@ -19,7 +19,7 @@ public class GenreRepositoryJdbc implements GenreRepository {
     }
 
     @Override
-    public Genre getById(int id) {
+    public Genre findById(int id) {
         return em.find(Genre.class, id);
     }
 

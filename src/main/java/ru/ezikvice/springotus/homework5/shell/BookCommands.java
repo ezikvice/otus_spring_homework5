@@ -8,7 +8,7 @@ import ru.ezikvice.springotus.homework5.domain.Book;
 import ru.ezikvice.springotus.homework5.domain.Genre;
 import ru.ezikvice.springotus.homework5.service.BookService;
 
-import java.util.List;
+import java.util.Set;
 
 @ShellComponent
 public class BookCommands {
@@ -34,12 +34,12 @@ public class BookCommands {
     }
 
     @ShellMethod(value = "Get list of authors", key = {"book-get-authors", "bga"})
-    public List<Author> getAuthors(@ShellOption int bookId) {
+    public Set<Author> getAuthors(@ShellOption int bookId) {
         return bookService.getAuthors(bookId);
     }
 
     @ShellMethod(value = "Get list of genres", key = {"book-get-genres", "bgg"})
-    public List<Genre> getGenres(@ShellOption int bookId) {
+    public Set<Genre> getGenres(@ShellOption int bookId) {
         return bookService.getGenres(bookId);
     }
 

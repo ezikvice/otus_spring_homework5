@@ -13,7 +13,7 @@ import ru.ezikvice.springotus.homework5.service.AuthorService;
 import ru.ezikvice.springotus.homework5.service.BookService;
 import ru.ezikvice.springotus.homework5.service.GenreService;
 
-import java.util.List;
+import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -50,7 +50,7 @@ public class BookTests {
         bookService.add(bookWithGenres);
         bookService.addGenre(bookWithGenres, firstGenre);
         bookService.addGenre(bookWithGenres, secondGenre);
-        List<Genre> foundGenres = bookService.getGenres(44);
+        Set<Genre> foundGenres = bookService.getGenres(44);
         Assert.assertTrue(foundGenres.contains(firstGenre));
         Assert.assertTrue(foundGenres.contains(secondGenre));
     }
@@ -66,7 +66,7 @@ public class BookTests {
         bookService.add(bookWithAuthors);
         bookService.addAuthor(bookWithAuthors, firstAuthor);
         bookService.addAuthor(bookWithAuthors, secondAuthor);
-        List<Author> foundAuthors = bookService.getAuthors(45);
+        Set<Author> foundAuthors = bookService.getAuthors(45);
         Assert.assertTrue(foundAuthors.contains(firstAuthor));
         Assert.assertTrue(foundAuthors.contains(secondAuthor));
     }

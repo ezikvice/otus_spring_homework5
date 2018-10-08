@@ -2,7 +2,7 @@ package ru.ezikvice.springotus.homework5.service;
 
 import ru.ezikvice.springotus.homework5.domain.Author;
 
-import java.util.List;
+import java.util.Set;
 
 public interface AuthorService {
 
@@ -12,6 +12,6 @@ public interface AuthorService {
 
     Author findById(int id);
 
-    List<Author> findByName(String name);
+    Set<Author> findByName(String name);
 
 }

@@ -6,7 +6,7 @@ import ru.ezikvice.springotus.homework5.domain.Author;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.List;
+import java.util.Set;
 
 @Repository
 public class AuthorRepositoryJdbc implements AuthorRepository {
@@ -31,9 +31,9 @@ public class AuthorRepositoryJdbc implements AuthorRepository {
     }
 
     @Override
-    public List<Author> findByName(String name) {
+    public Set<Author> findByName(String name) {
         Query query = em.createQuery("SELECT * FROM Author a WHERE a.name = :name");
-        return (List<Author>) query.getResultList();
+        return (Set<Author>) query.getResultList();
     }
 
 }

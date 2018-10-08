@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import ru.ezikvice.springotus.homework5.domain.Author;
 import ru.ezikvice.springotus.homework5.service.AuthorService;
 
-import java.util.List;
+import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -18,7 +18,7 @@ public class AuthorTests {
     @Autowired
     AuthorService service;
 
-    private static final Author testAuthor = new Author(42,"Test Author");
+    private static final Author testAuthor = new Author(42, "Test Author");
 
     @Test
     public void addingAuthor() {
@@ -31,7 +31,7 @@ public class AuthorTests {
     public void findingAuthorByName() {
         Author testNameAuthor = new Author(123, "Test Name Author");
         service.add(testNameAuthor);
-        List<Author> foundAuthors = service.findByName("Test Name Author");
+        Set<Author> foundAuthors = service.findByName("Test Name Author");
         Assert.assertTrue(foundAuthors.contains(testNameAuthor));
     }
 }

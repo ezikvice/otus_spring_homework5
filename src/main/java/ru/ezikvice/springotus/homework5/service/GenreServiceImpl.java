@@ -4,7 +4,10 @@ import org.springframework.stereotype.Service;
 import ru.ezikvice.springotus.homework5.dao.GenreRepository;
 import ru.ezikvice.springotus.homework5.domain.Genre;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class GenreServiceImpl implements GenreService {
 
     private final GenreRepository dao;
@@ -25,6 +28,6 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public Genre find(int genreId) {
-        return dao.getById(genreId);
+        return dao.findById(genreId);
     }
 }

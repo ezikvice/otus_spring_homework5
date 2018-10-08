@@ -3,23 +3,25 @@ package ru.ezikvice.springotus.homework5.service;
 import org.springframework.stereotype.Service;
 import ru.ezikvice.springotus.homework5.dao.AuthorRepository;
 import ru.ezikvice.springotus.homework5.dao.BookRepository;
-import ru.ezikvice.springotus.homework5.dao.BookGenreDao;
+import ru.ezikvice.springotus.homework5.dao.GenreRepository;
 import ru.ezikvice.springotus.homework5.domain.Author;
 import ru.ezikvice.springotus.homework5.domain.Book;
 import ru.ezikvice.springotus.homework5.domain.Genre;
 
-import java.util.List;
+import javax.transaction.Transactional;
+import java.util.Set;
 
 @Service
+@Transactional
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRep;
-    private final BookGenreDao bookGenreDao;
+    private final GenreRepository genreRep;
     private final AuthorRepository authorRep;
 
-    public BookServiceImpl(BookRepository bookRep, BookGenreDao bookGenreDao, AuthorRepository authorRep) {
+    public BookServiceImpl(BookRepository bookRep, GenreRepository genreRep, AuthorRepository authorRep) {
         this.bookRep = bookRep;
-        this.bookGenreDao = bookGenreDao;
+        this.genreRep = genreRep;
         this.authorRep = authorRep;
     }
 
@@ -35,8 +37,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book findById(int bookId) {
-        Book book = bookRep.getById(bookId);
-        return book;
+        return bookRep.getById(bookId);
     }
 
     @Override
@@ -53,28 +54,30 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void addGenre(Book book, Genre genre) {
-        bookGenreDao.add(book, genre);
+        bookRep.saveGenre(book, genre);
     }
 
     @Override
     public void addGenre(int bookId, int genreId) {
-        bookGenreDao.add(bookId, genreId);
-    }
-
-    @Override
-    public List<Genre> getGenres(Book book) {
-        return bookGenreDao.getByBook(book);
-    }
-
-    @Override
-    public List<Genre> getGenres(int bookId) {
         Book book = bookRep.getById(bookId);
-        return bookGenreDao.getByBook(book);
+        Genre genre = genreRep.findById(genreId);
+        bookRep.saveGenre(book, genre);
     }
 
     @Override
-    public List<Author> getAuthors(int bookId) {
+    public Set<Genre> getGenres(Book book) {
+        return book.getGenres();
+    }
+
+    @Override
+    public Set<Genre> getGenres(int bookId) {
         Book book = bookRep.getById(bookId);
-        return bookAuthorDao.getByBook(book);
+        return book.getGenres();
+    }
+
+    @Override
+    public Set<Author> getAuthors(int bookId) {
+        Book book = bookRep.getById(bookId);
+        return book.getAuthors();
     }
 }

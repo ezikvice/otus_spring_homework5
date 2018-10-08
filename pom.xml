@@ -29,12 +29,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.h2database</groupId>-->
-            <!--<artifactId>h2</artifactId>-->
-            <!--<version>1.4.197</version>-->
-            <!--&lt;!&ndash;<scope>runtime</scope>&ndash;&gt;-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.197</version>
+            <scope>test</scope>
+        </dependency>
 
         <!-- exclude tomcat jdbc connection pool, use HikariCP -->
         <dependency>

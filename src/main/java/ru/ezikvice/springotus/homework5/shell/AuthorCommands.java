@@ -6,7 +6,7 @@ import org.springframework.shell.standard.ShellOption;
 import ru.ezikvice.springotus.homework5.domain.Author;
 import ru.ezikvice.springotus.homework5.service.AuthorService;
 
-import java.util.List;
+import java.util.Set;
 
 @ShellComponent
 public class AuthorCommands {
@@ -35,7 +35,7 @@ public class AuthorCommands {
     }
 
     @ShellMethod(value = "Find author by name", key = {"findById-author-by-name", "afn"})
-    public List<Author> findByName(String name) {
+    public Set<Author> findByName(String name) {
         return authorService.findByName(name);
     }
 }

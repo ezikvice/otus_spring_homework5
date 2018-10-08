@@ -4,7 +4,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "author")
@@ -18,7 +18,7 @@ public class Author {
     private String name;
 
     @ManyToMany(mappedBy = "authors")
-    private List<Book> books;
+    private Set<Book> books;
 
     public Author() {
     }
@@ -44,11 +44,11 @@ public class Author {
         return id;
     }
 
-    public List<Book> getBooks() {
+    public Set<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(List<Book> books) {
+    public void setBooks(Set<Book> books) {
         this.books = books;
     }
 

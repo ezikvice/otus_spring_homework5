@@ -4,41 +4,36 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
-import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "book")
 public class Book {
 
     @Id
-    @GeneratedValue
     private int id;
     @Column
     private String name;
     @Column
     private String description;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+    @ManyToMany(cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER)
     @JoinTable(name = "book_author",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id")
     )
-    private List<Author> authors = Collections.emptyList();
+    private Set<Author> authors = new HashSet<>();
 
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+    @ManyToMany(cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER)
     @JoinTable(name = "book_genre",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
-    private List<Genre> genres = Collections.emptyList();
+    private Set<Genre> genres = new HashSet<>();
 
     public Book() {
     }
@@ -69,11 +64,11 @@ public class Book {
         return id;
     }
 
-    public List<Author> getAuthors() {
+    public Set<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<Author> authors) {
+    public void setAuthors(Set<Author> authors) {
         this.authors = authors;
     }
 
@@ -81,11 +76,11 @@ public class Book {
         this.authors.add(author);
     }
 
-    public List<Genre> getGenres() {
+    public Set<Genre> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<Genre> genres) {
+    public void setGenres(Set<Genre> genres) {
         this.genres = genres;
     }
 
@@ -127,8 +122,8 @@ public class Book {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", authors=" + authors +
-                ", genres=" + genres +
+//                ", authors=" + authors +
+//                ", genres=" + genres +
                 '}';
     }
 }

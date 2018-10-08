@@ -1,7 +1,7 @@
 package ru.ezikvice.springotus.homework5.domain;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table
@@ -14,7 +14,7 @@ public class Genre {
     private String description;
 
     @ManyToMany(mappedBy = "genres")
-    private List<Book> books;
+    private Set<Book> books;
 
     public Genre(String name, String description) {
         this.name = name;
@@ -45,11 +45,11 @@ public class Genre {
         this.description = description;
     }
 
-    public List<Book> getBooks() {
+    public Set<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(List<Book> books) {
+    public void setBooks(Set<Book> books) {
         this.books = books;
     }
 
