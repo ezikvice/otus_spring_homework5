@@ -16,20 +16,14 @@ public class Comment {
     @Column(name = "text")
     private String text;
 
-    @ManyToOne
-    @JoinColumn(name="book_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name="book_id")
     private Book book;
 
     public Comment() {
     }
 
     public Comment(Book book, String text) {
-        this.book = book;
-        this.text = text;
-    }
-
-    public Comment(int id, Book book, String text) {
-        this.id = id;
         this.book = book;
         this.text = text;
     }

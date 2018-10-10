@@ -41,7 +41,7 @@ public class BookRepositoryJdbc implements BookRepository {
 
     @Override
     public void saveComment(Book book, Comment comment) {
-        em.persist(comment);
+//        em.persist(comment);
         book.addComment(comment);
         em.persist(book);
     }

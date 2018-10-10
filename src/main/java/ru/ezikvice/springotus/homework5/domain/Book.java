@@ -36,9 +36,9 @@ public class Book {
     private Set<Genre> genres = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            orphanRemoval = true,
+            fetch = FetchType.EAGER,
             mappedBy = "book")
+//    @JoinColumn(name = "book_id")
     private Set<Comment> comments = new HashSet<>();
 
     public Book() {
