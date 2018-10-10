@@ -2,6 +2,7 @@ package ru.ezikvice.springotus.homework5.dao;
 
 import ru.ezikvice.springotus.homework5.domain.Author;
 import ru.ezikvice.springotus.homework5.domain.Book;
+import ru.ezikvice.springotus.homework5.domain.Comment;
 import ru.ezikvice.springotus.homework5.domain.Genre;
 
 public interface BookRepository {
@@ -13,6 +14,8 @@ public interface BookRepository {
     void saveAuthor(Book book, Author author);
 
     void saveGenre(Book book, Genre genre);
+
+    void saveComment(Book book, Comment comment);
 
     Book getById(int id);
 

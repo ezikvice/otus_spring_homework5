@@ -35,6 +35,12 @@ public class Book {
     )
     private Set<Genre> genres = new HashSet<>();
 
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true,
+            mappedBy = "book")
+    private Set<Comment> comments = new HashSet<>();
+
     public Book() {
     }
 
@@ -86,6 +92,18 @@ public class Book {
 
     public void addGenre(Genre genre) {
         this.genres.add(genre);
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
     }
 
     @Override

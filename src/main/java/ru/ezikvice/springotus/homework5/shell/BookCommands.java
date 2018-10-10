@@ -5,6 +5,7 @@ import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import ru.ezikvice.springotus.homework5.domain.Author;
 import ru.ezikvice.springotus.homework5.domain.Book;
+import ru.ezikvice.springotus.homework5.domain.Comment;
 import ru.ezikvice.springotus.homework5.domain.Genre;
 import ru.ezikvice.springotus.homework5.service.BookService;
 
@@ -43,6 +44,11 @@ public class BookCommands {
         return bookService.getGenres(bookId);
     }
 
+    @ShellMethod(value = "Get list of comments", key = {"book-get-comments", "bgc"})
+    public Set<Comment> getComments(@ShellOption int bookId) {
+        return bookService.getComments(bookId);
+    }
+
 
     @ShellMethod(value = "Add the genre to the book", key = {"book-add-genre", "bag"})
     public void addGenreToBook(int bookId, int genreId) {
@@ -53,6 +59,12 @@ public class BookCommands {
     public void addAuthorToBook(int bookId, int authorId) {
         bookService.addAuthor(bookId, authorId);
     }
+
+    @ShellMethod(value = "Add the comment to the book", key = {"book-add-comment", "bac"})
+    public void addAuthorToBook(int bookId, String comment) {
+        bookService.addComment(bookId, comment);
+    }
+
 
     //    @ShellMethod(value = "Find author by id", key = {"find-author-by-id", "afi"})
 //    public Author findById(int id) {

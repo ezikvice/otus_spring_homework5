@@ -6,6 +6,7 @@ import ru.ezikvice.springotus.homework5.dao.BookRepository;
 import ru.ezikvice.springotus.homework5.dao.GenreRepository;
 import ru.ezikvice.springotus.homework5.domain.Author;
 import ru.ezikvice.springotus.homework5.domain.Book;
+import ru.ezikvice.springotus.homework5.domain.Comment;
 import ru.ezikvice.springotus.homework5.domain.Genre;
 
 import javax.transaction.Transactional;
@@ -79,5 +80,18 @@ public class BookServiceImpl implements BookService {
     public Set<Author> getAuthors(int bookId) {
         Book book = bookRep.getById(bookId);
         return book.getAuthors();
+    }
+
+    @Override
+    public void addComment(int bookId, String text) {
+        Book book = bookRep.getById(bookId);
+        Comment comment = new Comment(book, text);
+        bookRep.saveComment(book, comment);
+    }
+
+    @Override
+    public Set<Comment> getComments(int bookId){
+        Book book = bookRep.getById(bookId);
+        return book.getComments();
     }
 }

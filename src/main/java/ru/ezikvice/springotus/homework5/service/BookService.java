@@ -2,6 +2,7 @@ package ru.ezikvice.springotus.homework5.service;
 
 import ru.ezikvice.springotus.homework5.domain.Author;
 import ru.ezikvice.springotus.homework5.domain.Book;
+import ru.ezikvice.springotus.homework5.domain.Comment;
 import ru.ezikvice.springotus.homework5.domain.Genre;
 
 import java.util.Set;
@@ -21,6 +22,10 @@ public interface BookService {
     void addGenre(Book book, Genre genre);
 
     void addGenre(int bookId, int genreId);
+
+    void addComment(int bookId, String comment);
+
+    Set<Comment> getComments(int bookId);
 
     Set<Genre> getGenres(Book book);
 
