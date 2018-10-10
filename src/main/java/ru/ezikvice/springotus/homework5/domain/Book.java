@@ -4,7 +4,9 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -39,7 +41,7 @@ public class Book {
             fetch = FetchType.EAGER,
             mappedBy = "book")
 //    @JoinColumn(name = "book_id")
-    private Set<Comment> comments = new HashSet<>();
+    private List<Comment> comments = new ArrayList();
 
     public Book() {
     }
@@ -94,11 +96,11 @@ public class Book {
         this.genres.add(genre);
     }
 
-    public Set<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(Set<Comment> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 

@@ -10,6 +10,7 @@ import ru.ezikvice.springotus.homework5.domain.Comment;
 import ru.ezikvice.springotus.homework5.domain.Genre;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -90,7 +91,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Set<Comment> getComments(int bookId){
+    public List<Comment> getComments(int bookId){
         Book book = bookRep.getById(bookId);
         return book.getComments();
     }

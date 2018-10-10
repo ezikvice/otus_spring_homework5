@@ -9,6 +9,7 @@ import ru.ezikvice.springotus.homework5.domain.Comment;
 import ru.ezikvice.springotus.homework5.domain.Genre;
 import ru.ezikvice.springotus.homework5.service.BookService;
 
+import java.util.List;
 import java.util.Set;
 
 @ShellComponent
@@ -45,7 +46,7 @@ public class BookCommands {
     }
 
     @ShellMethod(value = "Get list of comments", key = {"book-get-comments", "bgc"})
-    public Set<Comment> getComments(@ShellOption int bookId) {
+    public List<Comment> getComments(@ShellOption int bookId) {
         return bookService.getComments(bookId);
     }
 
