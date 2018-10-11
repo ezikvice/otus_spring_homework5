@@ -7,6 +7,7 @@ import java.util.Set;
 @Table
 public class Genre {
     @Id
+    @GeneratedValue
     private int id;
     @Column(name = "name")
     private String name;

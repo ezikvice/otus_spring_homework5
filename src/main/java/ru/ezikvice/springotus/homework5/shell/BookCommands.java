@@ -65,15 +65,4 @@ public class BookCommands {
     public void addAuthorToBook(int bookId, String comment) {
         bookService.addComment(bookId, comment);
     }
-
-
-    //    @ShellMethod(value = "Find author by id", key = {"find-author-by-id", "afi"})
-//    public Author findById(int id) {
-//        return authorService.findById(id);
-//    }
-//
-//    @ShellMethod(value = "Find author by name", key = {"findById-author-by-name", "afn"})
-//    public Author findByName(String name) {
-//        return authorService.findByName(name);
-//    }
 }
