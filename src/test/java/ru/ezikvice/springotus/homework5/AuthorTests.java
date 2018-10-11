@@ -18,18 +18,18 @@ public class AuthorTests {
     @Autowired
     AuthorService service;
 
-    private static final Author testAuthor = new Author(42, "Test Author");
+    private static Author testAuthor = new Author("Test Author");
 
     @Test
     public void addingAuthor() {
         service.add(testAuthor);
-        Author jdbcAuthor = service.findById(42);
+        Author jdbcAuthor = service.findById(testAuthor.getId());
         Assert.assertEquals(jdbcAuthor, testAuthor);
     }
 
     @Test
     public void findingAuthorByName() {
-        Author testNameAuthor = new Author(123, "Test Name Author");
+        Author testNameAuthor = new Author( "Test Name Author");
         service.add(testNameAuthor);
         Set<Author> foundAuthors = service.findByName("Test Name Author");
         Assert.assertTrue(foundAuthors.contains(testNameAuthor));

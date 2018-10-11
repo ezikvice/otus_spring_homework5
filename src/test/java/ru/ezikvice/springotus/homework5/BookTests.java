@@ -41,8 +41,8 @@ public class BookTests {
 
     @Test
     public void addingGenresToBook() {
-        Genre firstGenre = new Genre(111, "First genre", "First Genre Description");
-        Genre secondGenre = new Genre(112, "Second genre", "Second genre description");
+        Genre firstGenre = new Genre("First genre", "First Genre Description");
+        Genre secondGenre = new Genre("Second genre", "Second genre description");
         genreService.add(firstGenre);
         genreService.add(secondGenre);
 
