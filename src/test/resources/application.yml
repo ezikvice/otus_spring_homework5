@@ -10,13 +10,42 @@ spring:
   shell:
     interactive:
       enabled: false
-
   datasource:
-    url: jdbc:mysql://localhost:3306/otus_examples?useSSL=false
-    username: root
-    password: qasd
-    driver-class-name: com.mysql.jdbc.Driver
-    initialization-mode: always
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:db_test;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
+    username: sa
+    password: sa
+    initialization-mode: never
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format-sql: true
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
+#  jpa:
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.H2Dialect
+#        hbm2ddl.auto: create
+
+
+#  jdbc.driverClassName=
+#  jdbc.url=
+#
+#  hibernate.dialect=org.hibernate.dialect.H2Dialect
+#  hibernate.hbm2ddl.auto=create
+
+
+
+#  datasource:
+#    url: jdbc:h2:mem:myDb;DB_CLOSE_DELAY=-1
+#    username: sa
+##    password: qasd
+#    driver-class-name: org.h2.Driver
+#    initialization-mode: always
 
   # HikariCP settings
   # spring.datasource.hikari.*
