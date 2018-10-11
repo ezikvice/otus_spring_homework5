@@ -1,27 +1,32 @@
 package ru.ezikvice.springotus.homework5.domain;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "author")
+@ToString(exclude = "books")
+@EqualsAndHashCode(exclude = "books")
+@NoArgsConstructor
 public class Author {
 
     @Id
     @GeneratedValue
+    @Getter
+    @Setter
     private int id;
 
     @Column(name = "name")
+    @Getter
+    @Setter
     private String name;
 
     @ManyToMany(mappedBy = "authors")
+    @Getter
+    @Setter
     private Set<Book> books;
-
-    public Author() {
-    }
 
     public Author(String name) {
         this.name = name;
@@ -30,55 +35,5 @@ public class Author {
     public Author(int id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(Set<Book> books) {
-        this.books = books;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Author author = (Author) o;
-
-        return new EqualsBuilder()
-                .append(getId(), author.getId())
-                .append(getName(), author.getName())
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(getId())
-                .append(getName())
-                .toHashCode();
-    }
-
-    @Override
-    public String toString() {
-        return "Author{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
     }
 }

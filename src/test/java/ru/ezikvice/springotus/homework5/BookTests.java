@@ -29,9 +29,9 @@ public class BookTests {
 
     @Test
     public void addingBook() {
-        Book testBook = new Book(42, "The Book", "test book");
+        Book testBook = new Book("The Book", "test book");
         bookService.add(testBook);
-        Book foundBook = bookService.findById(42);
+        Book foundBook = bookService.findById(testBook.getId());
         Assert.assertEquals(foundBook, testBook);
     }
 
@@ -39,13 +39,13 @@ public class BookTests {
     public void addingGenresToBook() {
         Genre firstGenre = new Genre("First genre", "First Genre Description");
         Genre secondGenre = new Genre("Second genre", "Second genre description");
-        Book bookWithGenres = new Book(44, "book with genres", "two genres");
+        Book bookWithGenres = new Book("book with genres", "two genres");
 
         bookWithGenres.addGenre(firstGenre);
         bookWithGenres.addGenre(secondGenre);
         bookService.add(bookWithGenres);
 
-        Set<Genre> foundGenres = bookService.getGenres(44);
+        Set<Genre> foundGenres = bookService.getGenres(bookWithGenres.getId());
         Assert.assertTrue(foundGenres.contains(firstGenre));
         Assert.assertTrue(foundGenres.contains(secondGenre));
     }
@@ -54,13 +54,13 @@ public class BookTests {
     public void addingAuthorsToBook() {
         Author firstAuthor = new Author("mr. First");
         Author secondAuthor = new Author("mr. Second");
-        Book bookWithAuthors = new Book(45, "book with authors", "two authors");
+        Book bookWithAuthors = new Book("book with authors", "two authors");
 
         bookWithAuthors.addAuthor(firstAuthor);
         bookWithAuthors.addAuthor(secondAuthor);
         bookService.add(bookWithAuthors);
 
-        Set<Author> foundAuthors = bookService.getAuthors(45);
+        Set<Author> foundAuthors = bookService.getAuthors(bookWithAuthors.getId());
         Assert.assertTrue(foundAuthors.contains(firstAuthor));
         Assert.assertTrue(foundAuthors.contains(secondAuthor));
     }

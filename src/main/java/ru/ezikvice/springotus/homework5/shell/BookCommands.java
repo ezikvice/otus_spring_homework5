@@ -24,10 +24,9 @@ public class BookCommands {
 
     @ShellMethod(value = "Adding new book", key = {"add-book", "ba"})
     public void addAuthor(
-            @ShellOption int id,
             @ShellOption String name,
             @ShellOption String description) {
-        bookService.add(new Book(id, name, description));
+        bookService.add(new Book(name, description));
     }
 
     @ShellMethod(value = "Getting book by id", key = {"get-book", "bg"})
