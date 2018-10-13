@@ -1,4 +1,4 @@
-package ru.ezikvice.springotus.homework5;
+package ru.ezikvice.springotus.homework7;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -6,12 +6,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.ezikvice.springotus.homework5.domain.Author;
-import ru.ezikvice.springotus.homework5.domain.Book;
-import ru.ezikvice.springotus.homework5.domain.Genre;
-import ru.ezikvice.springotus.homework5.service.AuthorService;
-import ru.ezikvice.springotus.homework5.service.BookService;
-import ru.ezikvice.springotus.homework5.service.GenreService;
+import ru.ezikvice.springotus.homework7.domain.Author;
+import ru.ezikvice.springotus.homework7.domain.Book;
+import ru.ezikvice.springotus.homework7.domain.Genre;
+import ru.ezikvice.springotus.homework7.service.AuthorService;
+import ru.ezikvice.springotus.homework7.service.BookService;
+import ru.ezikvice.springotus.homework7.service.GenreService;
 
 import java.util.Set;
 

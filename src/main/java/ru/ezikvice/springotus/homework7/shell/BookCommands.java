@@ -1,13 +1,13 @@
-package ru.ezikvice.springotus.homework5.shell;
+package ru.ezikvice.springotus.homework7.shell;
 
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
-import ru.ezikvice.springotus.homework5.domain.Author;
-import ru.ezikvice.springotus.homework5.domain.Book;
-import ru.ezikvice.springotus.homework5.domain.Comment;
-import ru.ezikvice.springotus.homework5.domain.Genre;
-import ru.ezikvice.springotus.homework5.service.BookService;
+import ru.ezikvice.springotus.homework7.domain.Author;
+import ru.ezikvice.springotus.homework7.domain.Book;
+import ru.ezikvice.springotus.homework7.domain.Comment;
+import ru.ezikvice.springotus.homework7.domain.Genre;
+import ru.ezikvice.springotus.homework7.service.BookService;
 
 import java.util.List;
 import java.util.Set;

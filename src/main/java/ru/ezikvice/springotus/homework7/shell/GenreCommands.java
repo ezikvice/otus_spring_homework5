@@ -1,10 +1,10 @@
-package ru.ezikvice.springotus.homework5.shell;
+package ru.ezikvice.springotus.homework7.shell;
 
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
-import ru.ezikvice.springotus.homework5.domain.Genre;
-import ru.ezikvice.springotus.homework5.service.GenreService;
+import ru.ezikvice.springotus.homework7.domain.Genre;
+import ru.ezikvice.springotus.homework7.service.GenreService;
 
 @ShellComponent
 public class GenreCommands {
@@ -22,7 +22,7 @@ public class GenreCommands {
     }
 
     @ShellMethod(value = "Check number of genres", key = {"count-genres", "gc"})
-    public int countGenres() {
+    public long countGenres() {
         return genreService.count();
     }
 

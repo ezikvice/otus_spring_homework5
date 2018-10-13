@@ -1,12 +1,12 @@
-package ru.ezikvice.springotus.homework5.service;
+package ru.ezikvice.springotus.homework7.service;
 
-import ru.ezikvice.springotus.homework5.domain.Author;
+import ru.ezikvice.springotus.homework7.domain.Author;
 
 import java.util.Set;
 
 public interface AuthorService {
 
-    int count();
+    long count();
 
     void add(Author author);
 

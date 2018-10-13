@@ -1,4 +1,4 @@
-package ru.ezikvice.springotus.homework5.domain;
+package ru.ezikvice.springotus.homework7.domain;
 
 import lombok.Data;
 
@@ -17,7 +17,6 @@ public class Comment {
     private String text;
 
     @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name="book_id")
     private Book book;
 
     public Comment(Book book, String text) {
