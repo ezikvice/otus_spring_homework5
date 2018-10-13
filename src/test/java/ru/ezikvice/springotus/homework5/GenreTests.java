@@ -16,12 +16,11 @@ public class GenreTests {
     @Autowired
     GenreService genreService;
 
-    private static final Genre testGenre = new Genre(42, "test genre", "test genre description");
-
     @Test
     public void addingGenre() {
+        Genre testGenre = new Genre("test genre", "test genre description");
         genreService.add(testGenre);
-        Genre jdbcGenre = genreService.find(42);
+        Genre jdbcGenre = genreService.find(testGenre.getId());
         Assert.assertEquals(jdbcGenre, testGenre);
     }
 }

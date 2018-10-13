@@ -1,105 +1,81 @@
 package ru.ezikvice.springotus.homework5.domain;
 
+import lombok.*;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import java.util.Collections;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+@Entity
+@Table(name = "book")
+@ToString(exclude = {"comments"})
+@EqualsAndHashCode(exclude = "comments")
+@NoArgsConstructor
 public class Book {
 
-    private final int id;
+    @Id
+    @GeneratedValue
+    @Getter
+    @Setter
+    private int id;
+
+    @Column
+    @Getter
+    @Setter
     private String name;
+
+    @Column
+    @Getter
+    @Setter
     private String description;
-    private List<Author> authors = Collections.emptyList();
-    private List<Genre> genres = Collections.emptyList();
 
-    public Book(int id, String name, String description) {
-        this.id = id;
+    @ManyToMany(cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER)
+    @JoinTable(name = "book_author",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    @Getter
+    @Setter
+    private Set<Author> authors = new HashSet<>();
+
+
+    @ManyToMany(cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER)
+    @JoinTable(name = "book_genre",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    @Getter
+    @Setter
+    private Set<Genre> genres = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy = "book")
+    @Getter
+    @Setter
+    private List<Comment> comments = new ArrayList();
+
+    public Book(String name, String description) {
         this.name = name;
         this.description = description;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public List<Author> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(List<Author> authors) {
-        this.authors = authors;
-    }
 
     public void addAuthor(Author author) {
         this.authors.add(author);
-    }
-
-    public List<Genre> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(List<Genre> genres) {
-        this.genres = genres;
     }
 
     public void addGenre(Genre genre) {
         this.genres.add(genre);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Book book = (Book) o;
-
-        return new EqualsBuilder()
-                .append(getId(), book.getId())
-                .append(getName(), book.getName())
-                .append(getDescription(), book.getDescription())
-                .append(getAuthors(), book.getAuthors())
-                .append(getGenres(), book.getGenres())
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(getId())
-                .append(getName())
-                .append(getDescription())
-                .append(getAuthors())
-                .append(getGenres())
-                .toHashCode();
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", authors=" + authors +
-                ", genres=" + genres +
-                '}';
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
     }
 }

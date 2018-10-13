@@ -2,9 +2,9 @@ package ru.ezikvice.springotus.homework5.dao;
 
 import ru.ezikvice.springotus.homework5.domain.Author;
 
-import java.util.List;
+import java.util.Set;
 
-public interface AuthorDao {
+public interface AuthorRepository {
 
     int count();
 
@@ -12,5 +12,5 @@ public interface AuthorDao {
 
     Author findById(int id);
 
-    List<Author> findByName(String name);
+    Set<Author> findByName(String name);
 }

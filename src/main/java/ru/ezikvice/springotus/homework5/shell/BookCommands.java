@@ -5,10 +5,12 @@ import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import ru.ezikvice.springotus.homework5.domain.Author;
 import ru.ezikvice.springotus.homework5.domain.Book;
+import ru.ezikvice.springotus.homework5.domain.Comment;
 import ru.ezikvice.springotus.homework5.domain.Genre;
 import ru.ezikvice.springotus.homework5.service.BookService;
 
 import java.util.List;
+import java.util.Set;
 
 @ShellComponent
 public class BookCommands {
@@ -22,10 +24,9 @@ public class BookCommands {
 
     @ShellMethod(value = "Adding new book", key = {"add-book", "ba"})
     public void addAuthor(
-            @ShellOption int id,
             @ShellOption String name,
             @ShellOption String description) {
-        bookService.add(new Book(id, name, description));
+        bookService.add(new Book(name, description));
     }
 
     @ShellMethod(value = "Getting book by id", key = {"get-book", "bg"})
@@ -34,13 +35,18 @@ public class BookCommands {
     }
 
     @ShellMethod(value = "Get list of authors", key = {"book-get-authors", "bga"})
-    public List<Author> getAuthors(@ShellOption int bookId) {
+    public Set<Author> getAuthors(@ShellOption int bookId) {
         return bookService.getAuthors(bookId);
     }
 
     @ShellMethod(value = "Get list of genres", key = {"book-get-genres", "bgg"})
-    public List<Genre> getGenres(@ShellOption int bookId) {
+    public Set<Genre> getGenres(@ShellOption int bookId) {
         return bookService.getGenres(bookId);
+    }
+
+    @ShellMethod(value = "Get list of comments", key = {"book-get-comments", "bgc"})
+    public List<Comment> getComments(@ShellOption int bookId) {
+        return bookService.getComments(bookId);
     }
 
 
@@ -54,13 +60,8 @@ public class BookCommands {
         bookService.addAuthor(bookId, authorId);
     }
 
-    //    @ShellMethod(value = "Find author by id", key = {"find-author-by-id", "afi"})
-//    public Author findById(int id) {
-//        return authorService.findById(id);
-//    }
-//
-//    @ShellMethod(value = "Find author by name", key = {"findById-author-by-name", "afn"})
-//    public Author findByName(String name) {
-//        return authorService.findByName(name);
-//    }
+    @ShellMethod(value = "Add the comment to the book", key = {"book-add-comment", "bac"})
+    public void addAuthorToBook(int bookId, String comment) {
+        bookService.addComment(bookId, comment);
+    }
 }

@@ -1,85 +1,98 @@
 package ru.ezikvice.springotus.homework5.service;
 
 import org.springframework.stereotype.Service;
-import ru.ezikvice.springotus.homework5.dao.BookAuthorDao;
-import ru.ezikvice.springotus.homework5.dao.BookDao;
-import ru.ezikvice.springotus.homework5.dao.BookGenreDao;
+import ru.ezikvice.springotus.homework5.dao.AuthorRepository;
+import ru.ezikvice.springotus.homework5.dao.BookRepository;
+import ru.ezikvice.springotus.homework5.dao.GenreRepository;
 import ru.ezikvice.springotus.homework5.domain.Author;
 import ru.ezikvice.springotus.homework5.domain.Book;
+import ru.ezikvice.springotus.homework5.domain.Comment;
 import ru.ezikvice.springotus.homework5.domain.Genre;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 @Service
+@Transactional
 public class BookServiceImpl implements BookService {
 
-    private final BookDao dao;
-    private final BookGenreDao bookGenreDao;
-    private final BookAuthorDao bookAuthorDao;
+    private final BookRepository bookRep;
+    private final GenreRepository genreRep;
+    private final AuthorRepository authorRep;
 
-    public BookServiceImpl(BookDao dao, BookGenreDao bookGenreDao, BookAuthorDao bookAuthorDao) {
-        this.dao = dao;
-        this.bookGenreDao = bookGenreDao;
-        this.bookAuthorDao = bookAuthorDao;
+    public BookServiceImpl(BookRepository bookRep, GenreRepository genreRep, AuthorRepository authorRep) {
+        this.bookRep = bookRep;
+        this.genreRep = genreRep;
+        this.authorRep = authorRep;
     }
 
     @Override
     public int count() {
-        return dao.count();
+        return bookRep.count();
     }
 
     @Override
     public void add(Book book) {
-        dao.insert(book);
+        bookRep.save(book);
     }
 
     @Override
     public Book findById(int bookId) {
-        Book book = dao.getById(bookId);
-
-        List<Genre> genres = bookGenreDao.getByBook(book);
-        book.setGenres(genres);
-
-        List<Author> authors = bookAuthorDao.getByBook(book);
-        book.setAuthors(authors);
-
-        return book;
+        return bookRep.getById(bookId);
     }
 
     @Override
     public void addAuthor(Book book, Author author) {
-        bookAuthorDao.add(book, author);
+        bookRep.saveAuthor(book, author);
     }
 
     @Override
     public void addAuthor(int bookId, int authorId) {
-        bookAuthorDao.add(bookId, authorId);
+        Book book = bookRep.getById(bookId);
+        Author author = authorRep.findById(authorId);
+        bookRep.saveAuthor(book, author);
     }
 
     @Override
     public void addGenre(Book book, Genre genre) {
-        bookGenreDao.add(book, genre);
+        bookRep.saveGenre(book, genre);
     }
 
     @Override
     public void addGenre(int bookId, int genreId) {
-        bookGenreDao.add(bookId, genreId);
+        Book book = bookRep.getById(bookId);
+        Genre genre = genreRep.findById(genreId);
+        bookRep.saveGenre(book, genre);
     }
 
     @Override
-    public List<Genre> getGenres(Book book) {
-        return bookGenreDao.getByBook(book);
+    public Set<Genre> getGenres(Book book) {
+        return book.getGenres();
     }
 
     @Override
-    public List<Genre> getGenres(int bookId) {
-        Book book = dao.getById(bookId);
-        return bookGenreDao.getByBook(book);
+    public Set<Genre> getGenres(int bookId) {
+        Book book = bookRep.getById(bookId);
+        return book.getGenres();
     }
 
     @Override
-    public List<Author> getAuthors(int bookId) {
-        Book book = dao.getById(bookId);
-        return bookAuthorDao.getByBook(book);
+    public Set<Author> getAuthors(int bookId) {
+        Book book = bookRep.getById(bookId);
+        return book.getAuthors();
+    }
+
+    @Override
+    public void addComment(int bookId, String text) {
+        Book book = bookRep.getById(bookId);
+        Comment comment = new Comment(book, text);
+        bookRep.saveComment(book, comment);
+    }
+
+    @Override
+    public List<Comment> getComments(int bookId){
+        Book book = bookRep.getById(bookId);
+        return book.getComments();
     }
 }
