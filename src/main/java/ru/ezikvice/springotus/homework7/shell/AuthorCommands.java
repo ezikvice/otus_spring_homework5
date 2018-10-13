@@ -1,10 +1,10 @@
-package ru.ezikvice.springotus.homework5.shell;
+package ru.ezikvice.springotus.homework7.shell;
 
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
-import ru.ezikvice.springotus.homework5.domain.Author;
-import ru.ezikvice.springotus.homework5.service.AuthorService;
+import ru.ezikvice.springotus.homework7.domain.Author;
+import ru.ezikvice.springotus.homework7.service.AuthorService;
 
 import java.util.Set;
 
@@ -25,7 +25,7 @@ public class AuthorCommands {
     }
 
     @ShellMethod(value = "Check number of authors", key = {"count-authors", "ac"})
-    public int countAuthors() {
+    public long countAuthors() {
         return authorService.count();
     }
 

@@ -1,8 +1,6 @@
-package ru.ezikvice.springotus.homework5.domain;
+package ru.ezikvice.springotus.homework7.domain;
 
 import lombok.*;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
 import java.util.ArrayList;

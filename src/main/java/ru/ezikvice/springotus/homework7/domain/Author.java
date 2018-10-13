@@ -1,4 +1,4 @@
-package ru.ezikvice.springotus.homework5.domain;
+package ru.ezikvice.springotus.homework7.domain;
 
 import lombok.*;
 

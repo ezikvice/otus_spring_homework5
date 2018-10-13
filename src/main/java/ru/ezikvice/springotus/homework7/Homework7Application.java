@@ -1,4 +1,4 @@
-package ru.ezikvice.springotus.homework5;
+package ru.ezikvice.springotus.homework7;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.sql.SQLException;
 
 @SpringBootApplication
-public class Homework6Application {
+public class Homework7Application {
 
     public static void main(String[] args) throws SQLException {
-        SpringApplication.run(Homework6Application.class);
+        SpringApplication.run(Homework7Application.class);
     }
 }

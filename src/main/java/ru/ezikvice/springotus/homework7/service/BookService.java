@@ -1,16 +1,16 @@
-package ru.ezikvice.springotus.homework5.service;
+package ru.ezikvice.springotus.homework7.service;
 
-import ru.ezikvice.springotus.homework5.domain.Author;
-import ru.ezikvice.springotus.homework5.domain.Book;
-import ru.ezikvice.springotus.homework5.domain.Comment;
-import ru.ezikvice.springotus.homework5.domain.Genre;
+import ru.ezikvice.springotus.homework7.domain.Author;
+import ru.ezikvice.springotus.homework7.domain.Book;
+import ru.ezikvice.springotus.homework7.domain.Comment;
+import ru.ezikvice.springotus.homework7.domain.Genre;
 
 import java.util.List;
 import java.util.Set;
 
 public interface BookService {
 
-    int count();
+    long count();
 
     void add(Book book);
 
