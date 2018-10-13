@@ -11,8 +11,12 @@ import javax.transaction.Transactional;
 @Transactional
 public class GenreServiceImpl implements GenreService {
 
+    private final GenreRepository rep;
+
     @Autowired
-    private GenreRepository rep;
+    public GenreServiceImpl(GenreRepository rep) {
+        this.rep = rep;
+    }
 
     @Override
     public long count() {

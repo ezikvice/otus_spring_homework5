@@ -10,7 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.ezikvice.springotus.homework8.dao.BookRepository;
-import ru.ezikvice.springotus.homework8.dao.BookRepositoryCustom;
 import ru.ezikvice.springotus.homework8.domain.Book;
 import ru.ezikvice.springotus.homework8.domain.Comment;
 
@@ -26,14 +25,12 @@ public class CommentDaoTests {
     @Autowired
     private BookRepository rep;
 
-    @Autowired
-    private BookRepositoryCustom repCustom;
-
     @Test
     public void savingCommentToBook() {
         Book book = new Book("Very Popular Book", "Book with comments");
         Comment comment = new Comment("Test Name Author");
-        repCustom.saveComment(book, comment);
+        book.addComment(comment);
+        rep.save(book);
         Assert.assertTrue(book.getComments().contains(comment));
     }
 }

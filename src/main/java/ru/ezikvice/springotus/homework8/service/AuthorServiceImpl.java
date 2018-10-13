@@ -12,8 +12,12 @@ import java.util.Set;
 @Transactional
 public class AuthorServiceImpl implements AuthorService {
 
+    private final AuthorRepository authorRepository;
+
     @Autowired
-    private AuthorRepository authorRepository;
+    public AuthorServiceImpl(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
 
     @Override
     public long count() {
