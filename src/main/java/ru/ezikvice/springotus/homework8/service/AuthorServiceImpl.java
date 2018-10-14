@@ -5,11 +5,9 @@ import org.springframework.stereotype.Service;
 import ru.ezikvice.springotus.homework8.dao.AuthorRepository;
 import ru.ezikvice.springotus.homework8.domain.Author;
 
-import javax.transaction.Transactional;
 import java.util.Set;
 
 @Service
-@Transactional
 public class AuthorServiceImpl implements AuthorService {
 
     private final AuthorRepository authorRepository;

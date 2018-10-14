@@ -10,12 +10,10 @@ import ru.ezikvice.springotus.homework8.domain.Book;
 import ru.ezikvice.springotus.homework8.domain.Comment;
 import ru.ezikvice.springotus.homework8.domain.Genre;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Set;
 
 @Service
-@Transactional
 //@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 public class BookServiceImpl implements BookService {
 

@@ -5,10 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.ezikvice.springotus.homework8.dao.GenreRepository;
 import ru.ezikvice.springotus.homework8.domain.Genre;
 
-import javax.transaction.Transactional;
-
 @Service
-@Transactional
 public class GenreServiceImpl implements GenreService {
 
     private final GenreRepository rep;

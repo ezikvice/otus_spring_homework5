@@ -1,6 +1,5 @@
 package ru.ezikvice.springotus.homework8;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,20 +10,21 @@ import ru.ezikvice.springotus.homework8.service.AuthorService;
 
 import java.util.Set;
 
+import static org.junit.Assert.assertTrue;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AuthorTests {
 
+    private static Author testAuthor = new Author("Test Author");
     @Autowired
     AuthorService service;
-
-    private static Author testAuthor = new Author("Test Author");
 
     @Test
     public void addingAuthor() {
         service.add(testAuthor);
         Set<Author> foundAuthors = service.findByName(testAuthor.getName());
-        Assert.assertTrue(foundAuthors.contains(testAuthor));
+        assertTrue(foundAuthors.contains(testAuthor));
     }
 
     @Test
@@ -32,6 +32,6 @@ public class AuthorTests {
         Author testNameAuthor = new Author("Test Name Author");
         service.add(testNameAuthor);
         Set<Author> foundAuthors = service.findByName("Test Name Author");
-        Assert.assertTrue(foundAuthors.contains(testNameAuthor));
+        assertTrue(foundAuthors.contains(testNameAuthor));
     }
 }

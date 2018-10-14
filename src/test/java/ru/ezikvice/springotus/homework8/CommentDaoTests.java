@@ -1,6 +1,5 @@
 package ru.ezikvice.springotus.homework8;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import ru.ezikvice.springotus.homework8.dao.BookRepository;
 import ru.ezikvice.springotus.homework8.domain.Book;
 import ru.ezikvice.springotus.homework8.domain.Comment;
+
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -31,6 +32,6 @@ public class CommentDaoTests {
         Comment comment = new Comment("Test Name Author");
         book.addComment(comment);
         rep.save(book);
-        Assert.assertTrue(book.getComments().contains(comment));
+        assertTrue(book.getComments().contains(comment));
     }
 }

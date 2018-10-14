@@ -1,6 +1,5 @@
 package ru.ezikvice.springotus.homework8;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.ezikvice.springotus.homework8.dao.GenreRepository;
 import ru.ezikvice.springotus.homework8.domain.Genre;
+
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -28,6 +29,6 @@ public class GenreDaoTests {
     public void findingGenreById() {
         Genre testGenre = new Genre("Testing Software", "It`s all about us");
         em.save(testGenre);
-        Assert.assertEquals(rep.findById(testGenre.getId()), testGenre);
+        assertEquals(rep.findById(testGenre.getId()), testGenre);
     }
 }

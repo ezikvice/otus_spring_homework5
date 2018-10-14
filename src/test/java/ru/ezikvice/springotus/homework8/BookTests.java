@@ -1,6 +1,5 @@
 package ru.ezikvice.springotus.homework8;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,9 @@ import ru.ezikvice.springotus.homework8.service.BookService;
 import ru.ezikvice.springotus.homework8.service.GenreService;
 
 import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -32,7 +34,7 @@ public class BookTests {
         Book testBook = new Book("The Book", "test book");
         bookService.add(testBook);
         Book foundBook = bookService.findById(testBook.getId());
-        Assert.assertEquals(foundBook, testBook);
+        assertEquals(foundBook, testBook);
     }
 
     @Test
@@ -46,8 +48,8 @@ public class BookTests {
         bookService.add(bookWithGenres);
 
         Set<Genre> foundGenres = bookService.getGenres(bookWithGenres.getId());
-        Assert.assertTrue(foundGenres.contains(firstGenre));
-        Assert.assertTrue(foundGenres.contains(secondGenre));
+        assertTrue(foundGenres.contains(firstGenre));
+        assertTrue(foundGenres.contains(secondGenre));
     }
 
     @Test
@@ -61,7 +63,7 @@ public class BookTests {
         bookService.add(bookWithAuthors);
 
         Set<Author> foundAuthors = bookService.getAuthors(bookWithAuthors.getId());
-        Assert.assertTrue(foundAuthors.contains(firstAuthor));
-        Assert.assertTrue(foundAuthors.contains(secondAuthor));
+        assertTrue(foundAuthors.contains(firstAuthor));
+        assertTrue(foundAuthors.contains(secondAuthor));
     }
 }
