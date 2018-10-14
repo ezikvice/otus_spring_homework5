@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class GenreTests {
 
     @Autowired
-    GenreService genreService;
+    private GenreService genreService;
 
     @Test
     public void addingGenre() {

@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 public class GenreDaoTests {
 
     @Autowired
-    MongoTemplate em;
+    private MongoTemplate mt;
 
     @Autowired
     private GenreRepository rep;
@@ -28,7 +28,7 @@ public class GenreDaoTests {
     @Test
     public void findingGenreById() {
         Genre testGenre = new Genre("Testing Software", "It`s all about us");
-        em.save(testGenre);
+        mt.save(testGenre);
         assertEquals(rep.findById(testGenre.getId()), testGenre);
     }
 }

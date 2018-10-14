@@ -18,7 +18,7 @@ public class AuthorTests {
 
     private static Author testAuthor = new Author("Test Author");
     @Autowired
-    AuthorService service;
+    private AuthorService service;
 
     @Test
     public void addingAuthor() {

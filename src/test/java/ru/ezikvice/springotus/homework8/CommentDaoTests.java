@@ -21,7 +21,7 @@ import static org.junit.Assert.assertTrue;
 public class CommentDaoTests {
 
     @Autowired
-    MongoTemplate em;
+    private MongoTemplate mt;
 
     @Autowired
     private BookRepository rep;

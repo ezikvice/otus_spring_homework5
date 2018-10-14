@@ -20,7 +20,7 @@ import static org.junit.Assert.assertTrue;
 public class AuthorDaoTests {
 
     @Autowired
-    MongoTemplate em;
+    private MongoTemplate mt;
 
     @Autowired
     private AuthorRepository rep;
@@ -28,7 +28,7 @@ public class AuthorDaoTests {
     @Test
     public void findingAuthorByName() {
         Author testNameAuthor = new Author("Test Name Author");
-        em.save(testNameAuthor);
+        mt.save(testNameAuthor);
         assertTrue(rep.findByName("Test Name Author").contains(testNameAuthor));
     }
 }

@@ -23,11 +23,11 @@ public class BookTests {
 
 
     @Autowired
-    BookService bookService;
+    private BookService bookService;
     @Autowired
-    AuthorService authorService;
+    private AuthorService authorService;
     @Autowired
-    GenreService genreService;
+    private GenreService genreService;
 
     @Test
     public void addingBook() {
