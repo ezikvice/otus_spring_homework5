@@ -1,6 +1,6 @@
-package ru.ezikvice.springotus.homework8.service;
+package ru.ezikvice.springotus.homework9.service;
 
-import ru.ezikvice.springotus.homework8.domain.Author;
+import ru.ezikvice.springotus.homework9.domain.Author;
 
 import java.util.Set;
 

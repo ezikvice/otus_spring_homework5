@@ -1,4 +1,4 @@
-package ru.ezikvice.springotus.homework8.domain;
+package ru.ezikvice.springotus.homework9.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

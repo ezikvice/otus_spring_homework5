@@ -1,10 +1,10 @@
-package ru.ezikvice.springotus.homework8.shell;
+package ru.ezikvice.springotus.homework9.shell;
 
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
-import ru.ezikvice.springotus.homework8.domain.Author;
-import ru.ezikvice.springotus.homework8.service.AuthorService;
+import ru.ezikvice.springotus.homework9.domain.Author;
+import ru.ezikvice.springotus.homework9.service.AuthorService;
 
 import java.util.Set;
 

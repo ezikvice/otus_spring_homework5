@@ -1,14 +1,14 @@
-package ru.ezikvice.springotus.homework8.service;
+package ru.ezikvice.springotus.homework9.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.ezikvice.springotus.homework8.dao.AuthorRepository;
-import ru.ezikvice.springotus.homework8.dao.BookRepository;
-import ru.ezikvice.springotus.homework8.dao.GenreRepository;
-import ru.ezikvice.springotus.homework8.domain.Author;
-import ru.ezikvice.springotus.homework8.domain.Book;
-import ru.ezikvice.springotus.homework8.domain.Comment;
-import ru.ezikvice.springotus.homework8.domain.Genre;
+import ru.ezikvice.springotus.homework9.dao.AuthorRepository;
+import ru.ezikvice.springotus.homework9.dao.BookRepository;
+import ru.ezikvice.springotus.homework9.dao.GenreRepository;
+import ru.ezikvice.springotus.homework9.domain.Author;
+import ru.ezikvice.springotus.homework9.domain.Book;
+import ru.ezikvice.springotus.homework9.domain.Comment;
+import ru.ezikvice.springotus.homework9.domain.Genre;
 
 import java.util.List;
 import java.util.Set;

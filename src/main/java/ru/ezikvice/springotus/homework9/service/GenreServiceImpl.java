@@ -1,9 +1,9 @@
-package ru.ezikvice.springotus.homework8.service;
+package ru.ezikvice.springotus.homework9.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.ezikvice.springotus.homework8.dao.GenreRepository;
-import ru.ezikvice.springotus.homework8.domain.Genre;
+import ru.ezikvice.springotus.homework9.dao.GenreRepository;
+import ru.ezikvice.springotus.homework9.domain.Genre;
 
 @Service
 public class GenreServiceImpl implements GenreService {

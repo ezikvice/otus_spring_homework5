@@ -1,9 +1,9 @@
-package ru.ezikvice.springotus.homework8.service;
+package ru.ezikvice.springotus.homework9.service;
 
-import ru.ezikvice.springotus.homework8.domain.Author;
-import ru.ezikvice.springotus.homework8.domain.Book;
-import ru.ezikvice.springotus.homework8.domain.Comment;
-import ru.ezikvice.springotus.homework8.domain.Genre;
+import ru.ezikvice.springotus.homework9.domain.Author;
+import ru.ezikvice.springotus.homework9.domain.Book;
+import ru.ezikvice.springotus.homework9.domain.Comment;
+import ru.ezikvice.springotus.homework9.domain.Genre;
 
 import java.util.List;
 import java.util.Set;

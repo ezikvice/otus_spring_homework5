@@ -1,4 +1,4 @@
-# otus spring homework 8
-homework 8 for Otus springFramework course
+# otus spring homework 9
+homework 9 for Otus springFramework course
 
-MongoDB
+CRUD app with Web UI (Thymeleaf, classic controllers)

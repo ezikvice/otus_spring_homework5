@@ -1,4 +1,4 @@
-package ru.ezikvice.springotus.homework8;
+package ru.ezikvice.springotus.homework9;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,27 +8,27 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.ezikvice.springotus.homework8.dao.GenreRepository;
-import ru.ezikvice.springotus.homework8.domain.Genre;
+import ru.ezikvice.springotus.homework9.dao.AuthorRepository;
+import ru.ezikvice.springotus.homework9.domain.Author;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @DataMongoTest
-@ComponentScan("ru.ezikvice.springotus.homework8.dao")
-public class GenreDaoTests {
+@ComponentScan("ru.ezikvice.springotus.homework9.dao")
+public class AuthorDaoTests {
 
     @Autowired
     private MongoTemplate mt;
 
     @Autowired
-    private GenreRepository rep;
+    private AuthorRepository rep;
 
     @Test
-    public void findingGenreById() {
-        Genre testGenre = new Genre("Testing Software", "It`s all about us");
-        mt.save(testGenre);
-        assertEquals(rep.findById(testGenre.getId()), testGenre);
+    public void findingAuthorByName() {
+        Author testNameAuthor = new Author("Test Name Author");
+        mt.save(testNameAuthor);
+        assertTrue(rep.findByName("Test Name Author").contains(testNameAuthor));
     }
 }

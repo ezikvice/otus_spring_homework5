@@ -1,4 +1,4 @@
-package ru.ezikvice.springotus.homework8;
+package ru.ezikvice.springotus.homework9;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,16 +8,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.ezikvice.springotus.homework8.dao.BookRepository;
-import ru.ezikvice.springotus.homework8.domain.Book;
-import ru.ezikvice.springotus.homework8.domain.Comment;
+import ru.ezikvice.springotus.homework9.dao.BookRepository;
+import ru.ezikvice.springotus.homework9.domain.Book;
+import ru.ezikvice.springotus.homework9.domain.Comment;
 
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @DataMongoTest
-@ComponentScan("ru.ezikvice.springotus.homework8.dao")
+@ComponentScan("ru.ezikvice.springotus.homework9.dao")
 public class CommentDaoTests {
 
     @Autowired

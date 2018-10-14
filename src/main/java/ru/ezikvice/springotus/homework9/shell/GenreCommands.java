@@ -1,10 +1,10 @@
-package ru.ezikvice.springotus.homework8.shell;
+package ru.ezikvice.springotus.homework9.shell;
 
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
-import ru.ezikvice.springotus.homework8.domain.Genre;
-import ru.ezikvice.springotus.homework8.service.GenreService;
+import ru.ezikvice.springotus.homework9.domain.Genre;
+import ru.ezikvice.springotus.homework9.service.GenreService;
 
 @ShellComponent
 public class GenreCommands {
