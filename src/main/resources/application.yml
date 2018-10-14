@@ -14,18 +14,14 @@ spring:
           new_generator_mappings: false
         show_sql: true
 
-  datasource:
-    url: jdbc:mysql://localhost:3306/otus_examples?useSSL=false
-    username: root
-    password: qasd
-    driver-class-name: com.mysql.jdbc.Driver
-    initialization-mode: always
+  # local MongoDB:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/user_db
 
-  # HikariCP settings
-  # spring.datasource.hikari.*
-
-  #60 sec
-    hikari:
-      connection-timeout: 60000
-      maximum-pool-size: 10
-
+  #logging
+logging:
+  level:
+    org:
+      springframework:
+        data: debug

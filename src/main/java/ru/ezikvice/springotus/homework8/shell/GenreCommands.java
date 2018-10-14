@@ -1,10 +1,10 @@
-package ru.ezikvice.springotus.homework7.shell;
+package ru.ezikvice.springotus.homework8.shell;
 
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
-import ru.ezikvice.springotus.homework7.domain.Genre;
-import ru.ezikvice.springotus.homework7.service.GenreService;
+import ru.ezikvice.springotus.homework8.domain.Genre;
+import ru.ezikvice.springotus.homework8.service.GenreService;
 
 @ShellComponent
 public class GenreCommands {
@@ -27,7 +27,7 @@ public class GenreCommands {
     }
 
     @ShellMethod(value = "Find Genre by id", key = {"find-genre-by-id", "gfi"})
-    public Genre findById(int id) {
+    public Genre findById(String id) {
         return genreService.find(id);
     }
 }

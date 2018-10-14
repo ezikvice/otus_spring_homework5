@@ -1,4 +1,4 @@
-# otus spring homework 7
-homework 7 for Otus springFramework course
+# otus spring homework 8
+homework 8 for Otus springFramework course
 
-spring-data-jpa
+MongoDB

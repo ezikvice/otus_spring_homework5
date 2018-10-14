@@ -1,4 +1,4 @@
-package ru.ezikvice.springotus.homework7;
+package ru.ezikvice.springotus.homework8;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -6,8 +6,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.ezikvice.springotus.homework7.domain.Genre;
-import ru.ezikvice.springotus.homework7.service.GenreService;
+import ru.ezikvice.springotus.homework8.domain.Genre;
+import ru.ezikvice.springotus.homework8.service.GenreService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

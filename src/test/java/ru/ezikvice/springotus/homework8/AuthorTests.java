@@ -1,4 +1,4 @@
-package ru.ezikvice.springotus.homework7;
+package ru.ezikvice.springotus.homework8;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -6,8 +6,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.ezikvice.springotus.homework7.domain.Author;
-import ru.ezikvice.springotus.homework7.service.AuthorService;
+import ru.ezikvice.springotus.homework8.domain.Author;
+import ru.ezikvice.springotus.homework8.service.AuthorService;
 
 import java.util.Set;
 
@@ -23,8 +23,8 @@ public class AuthorTests {
     @Test
     public void addingAuthor() {
         service.add(testAuthor);
-        Author jdbcAuthor = service.findById(testAuthor.getId());
-        Assert.assertEquals(jdbcAuthor, testAuthor);
+        Set<Author> foundAuthors = service.findByName(testAuthor.getName());
+        Assert.assertTrue(foundAuthors.contains(testAuthor));
     }
 
     @Test

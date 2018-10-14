@@ -1,9 +1,9 @@
-package ru.ezikvice.springotus.homework7.service;
+package ru.ezikvice.springotus.homework8.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.ezikvice.springotus.homework7.dao.GenreRepository;
-import ru.ezikvice.springotus.homework7.domain.Genre;
+import ru.ezikvice.springotus.homework8.dao.GenreRepository;
+import ru.ezikvice.springotus.homework8.domain.Genre;
 
 import javax.transaction.Transactional;
 
@@ -11,8 +11,12 @@ import javax.transaction.Transactional;
 @Transactional
 public class GenreServiceImpl implements GenreService {
 
+    private final GenreRepository rep;
+
     @Autowired
-    private GenreRepository rep;
+    public GenreServiceImpl(GenreRepository rep) {
+        this.rep = rep;
+    }
 
     @Override
     public long count() {
@@ -25,7 +29,7 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public Genre find(int genreId) {
+    public Genre find(String genreId) {
         return rep.findById(genreId);
     }
 }

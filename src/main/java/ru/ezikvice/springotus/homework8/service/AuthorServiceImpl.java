@@ -1,9 +1,9 @@
-package ru.ezikvice.springotus.homework7.service;
+package ru.ezikvice.springotus.homework8.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.ezikvice.springotus.homework7.dao.AuthorRepository;
-import ru.ezikvice.springotus.homework7.domain.Author;
+import ru.ezikvice.springotus.homework8.dao.AuthorRepository;
+import ru.ezikvice.springotus.homework8.domain.Author;
 
 import javax.transaction.Transactional;
 import java.util.Set;
@@ -12,8 +12,12 @@ import java.util.Set;
 @Transactional
 public class AuthorServiceImpl implements AuthorService {
 
+    private final AuthorRepository authorRepository;
+
     @Autowired
-    private AuthorRepository authorRepository;
+    public AuthorServiceImpl(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
 
     @Override
     public long count() {
@@ -26,7 +30,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Author findById(int id) {
+    public Author findById(String id) {
         return authorRepository.findById(id);
     }
 

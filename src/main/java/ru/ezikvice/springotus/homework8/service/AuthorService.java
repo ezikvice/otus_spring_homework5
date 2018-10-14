@@ -1,6 +1,6 @@
-package ru.ezikvice.springotus.homework7.service;
+package ru.ezikvice.springotus.homework8.service;
 
-import ru.ezikvice.springotus.homework7.domain.Author;
+import ru.ezikvice.springotus.homework8.domain.Author;
 
 import java.util.Set;
 
@@ -10,7 +10,7 @@ public interface AuthorService {
 
     void add(Author author);
 
-    Author findById(int id);
+    Author findById(String id);
 
     Set<Author> findByName(String name);
 
