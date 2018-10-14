@@ -21,7 +21,7 @@ public class GenreTests {
     public void addingGenre() {
         Genre testGenre = new Genre("test genre", "test genre description");
         genreService.add(testGenre);
-        Genre jdbcGenre = genreService.find(testGenre.getId());
+        Genre jdbcGenre = genreService.findById(testGenre.getId());
         assertEquals(jdbcGenre, testGenre);
     }
 }

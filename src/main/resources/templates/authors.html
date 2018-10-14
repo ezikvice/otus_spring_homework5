@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Authors</title>
+</head>
+<body>
+<div>
+
+    <a th:href="@{/}" href="index.html">В начало</a>
+    <a th:href="@{/authors/add}" href="author-add.html">добавить автора</a>
+
+
+    <h1>Список авторов:</h1>
+
+    <table class="authors list">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="author : ${authors}">
+            <td th:text="${author.id}">1</td>
+            <td th:text="${author.name}">Пушкин Александр Сергеевич</td>
+            <td>
+                <a th:href="@{/authors/edit(id=${author.id})}" href="author-edit.html">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

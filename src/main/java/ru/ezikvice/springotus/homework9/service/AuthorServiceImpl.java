@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.ezikvice.springotus.homework9.dao.AuthorRepository;
 import ru.ezikvice.springotus.homework9.domain.Author;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -23,13 +24,23 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public void add(Author author) {
-        authorRepository.save(author);
+    public Author save(Author author) {
+        return authorRepository.save(author);
+    }
+
+    @Override
+    public void delete(Author author) {
+        authorRepository.delete(author);
     }
 
     @Override
     public Author findById(String id) {
         return authorRepository.findById(id);
+    }
+
+    @Override
+    public List<Author> findAll() {
+        return authorRepository.findAll();
     }
 
     @Override

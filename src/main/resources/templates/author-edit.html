@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Отредактировать книгу</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        input:read-only {
+            background: lightgray;
+        }
+
+        .row {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<p><a th:href="@{/authors/get}" href="authors.html">К списку авторов</a></p>
+<!-- Person edition -->
+<form id="edit-form" th:action="@{/authors/edit(id=${author.id})}" th:method="post" action="author-edit.html">
+    <h1>Информация об авторе:</h1>
+
+    <div class="row">
+        <label for="id-input">ID:</label>
+        <input id="id-input" type="text" readonly="readonly" th:value="${author.id}" value="1"/>
+    </div>
+
+    <div class="row">
+        <label for="holder-input">Имя автора:</label>
+        <input id="holder-input" name="namr" type="text" th:value="${author.name}" value="Васисуалий Пупкиндт"/>
+    </div>
+
+    <div class="row">
+        <button type="submit">Сохранить</button>
+    </div>
+</form>
+
+</body>
+</html>

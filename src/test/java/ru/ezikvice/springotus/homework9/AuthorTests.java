@@ -22,7 +22,7 @@ public class AuthorTests {
 
     @Test
     public void addingAuthor() {
-        service.add(testAuthor);
+        service.save(testAuthor);
         Set<Author> foundAuthors = service.findByName(testAuthor.getName());
         assertTrue(foundAuthors.contains(testAuthor));
     }
@@ -30,7 +30,7 @@ public class AuthorTests {
     @Test
     public void findingAuthorByName() {
         Author testNameAuthor = new Author("Test Name Author");
-        service.add(testNameAuthor);
+        service.save(testNameAuthor);
         Set<Author> foundAuthors = service.findByName("Test Name Author");
         assertTrue(foundAuthors.contains(testNameAuthor));
     }

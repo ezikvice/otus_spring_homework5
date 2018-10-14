@@ -16,6 +16,12 @@ public interface BookService {
 
     Book findById(String bookId);
 
+    List<Book> findAll();
+
+    Book save(Book book);
+
+    void delete(Book book);
+
     void addAuthor(Book book, Author author);
 
     void addAuthor(String bookId, String authorId);

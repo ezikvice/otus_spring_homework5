@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+</head>
+<body>
+<div>
+
+    <a th:href="@{/}" href="index.html">В начало</a>
+    <a th:href="@{/books/add}" href="book-add.html">добавить книгу</a>
+
+
+    <h1>Список литературы:</h1>
+
+    <table class="books list">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.id}">1</td>
+            <td th:text="${book.name}">Как же называется эта книга</td>
+            <td>
+                <a th:href="@{/books/edit(id=${book.id})}" href="book-edit.html">Edit</a>
+                <a th:href="@{/books/delete(id=${book.id})}" href="book-edit.html">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

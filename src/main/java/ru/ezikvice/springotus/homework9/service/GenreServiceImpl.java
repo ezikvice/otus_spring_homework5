@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ru.ezikvice.springotus.homework9.dao.GenreRepository;
 import ru.ezikvice.springotus.homework9.domain.Genre;
 
+import java.util.List;
+
 @Service
 public class GenreServiceImpl implements GenreService {
 
@@ -26,7 +28,25 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public Genre find(String genreId) {
+    public Genre findById(String genreId) {
         return rep.findById(genreId);
     }
+
+
+    @Override
+    public List<Genre> findAll() {
+        return rep.findAll();
+    }
+
+    @Override
+    public Genre save(Genre genre) {
+        return rep.save(genre);
+    }
+
+    @Override
+    public void delete(Genre genre) {
+        rep.delete(genre);
+    }
+
+
 }

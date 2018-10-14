@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Genres</title>
+</head>
+<body>
+<div>
+
+    <a th:href="@{/}" href="index.html">В начало</a>
+    <a th:href="@{/genres/add}" href="genre-add.html">добавить жанр</a>
+
+
+    <h1>Список жанров:</h1>
+
+    <table class="genres list">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Описание</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="genre : ${genres}">
+            <td th:text="${genre.id}">1</td>
+            <td th:text="${genre.name}">Научная фантастика</td>
+            <td th:text="${genre.description}">Будущее, космос, вот это всё</td>
+            <td>
+                <a th:href="@{/genres/edit(id=${genre.id})}" href="genre-edit.html">Edit</a>
+                <a th:href="@{/genres/delete(id=${genre.id})}" href="genre-edit.html">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

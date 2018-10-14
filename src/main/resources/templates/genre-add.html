@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Добавить жанр</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        input:read-only {
+            background: lightgray;
+        }
+
+        .row {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<p><a th:href="@{/genres/get}" href="genres.html">К списку жанров</a></p>
+<!-- Person edition -->
+<form id="edit-form" th:action="@{/genres/add}" th:method="post" action="genre-add.html">
+    <h1>Добавить жанр:</h1>
+
+    <div class="row">
+        <label for="name-input">Название:</label>
+        <input id="name-input" name="namr" type="text" value="ЖЗЛ"/>
+    </div>
+    <div class="row">
+        <label for="description-input">Описание:</label>
+        <input id="description-input" name="description" type="text" value="Жизнь замечательных людей"/>
+    </div>
+
+    <div class="row">
+        <button type="submit">Сохранить</button>
+    </div>
+</form>
+
+</body>
+</html>
