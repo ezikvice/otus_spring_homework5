@@ -39,13 +39,101 @@
     </div>
     <div class="row">
         <label for="description-input">Описание:</label>
-        <input id="description-input" name="description" type="text" th:value="${book.description}" value="книги о вечном"/>
+        <input id="description-input" name="description" type="text" th:value="${book.description}"
+               value="книги о вечном"/>
     </div>
 
     <div class="row">
         <button type="submit">Сохранить</button>
     </div>
 </form>
+
+<div>
+    <p>Добавить автора</p>
+    <form id="add-author-form" th:action="@{/books/add-author}" th:method="post" action="book-edit.html">
+        <input id="add-author-book-id-input" name="bookId" th:type="hidden" type="text" th:value="${book.id}"
+               value="bookId"/>
+        <div class="row">
+            <label for="author-id-input">Author ID:</label>
+            <input id="author-id-input" name="authorId" type="text" value=""/>
+        </div>
+        <div class="row">
+            <button type="submit">Добавить</button>
+        </div>
+    </form>
+
+    <h2>Авторы</h2>
+    <table class="authors list">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="author : ${book.authors}">
+            <td th:text="${author.id}">1</td>
+            <td th:text="${author.name}">Пушкин Александр Сергеевич</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <p>Добавить жанр</p>
+    <form id="add-genre-form" th:action="@{/books/add-genre}" th:method="post" action="book-edit.html">
+        <input id="add-genre-book-id-input" name="bookId" th:type="hidden" type="text" th:value="${book.id}"
+               value="bookId"/>
+        <div class="row">
+            <label for="genre-id-input">Genre ID:</label>
+            <input id="genre-id-input" name="genreId" type="text" value=""/>
+        </div>
+        <div class="row">
+            <button type="submit">Добавить</button>
+        </div>
+    </form>
+
+    <h2>Жанры</h2>
+    <table class="genres list">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="genre : ${book.genres}">
+            <td th:text="${genre.id}">1</td>
+            <td th:text="${genre.name}">Ненаучная Фантастика</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <p>Добавить комментарий</p>
+    <form id="add-comment-form" th:action="@{/books/add-comment}" th:method="post" action="book-edit.html">
+        <input id="add-comment-book-id-input" name="bookId" th:type="hidden" type="text" th:value="${book.id}"
+               value="bookId"/>
+        <div class="row">
+            <label for="comment-input">Комментарий</label>
+            <input id="comment-input" name="comment" type="text" value=""/>
+        </div>
+        <div class="row">
+            <button type="submit">Добавить</button>
+        </div>
+    </form>
+
+    <h2>Комментарии к книге</h2>
+    <table class="comments list">
+        <tbody>
+        <tr th:each="comment : ${book.comments}">
+            <td th:text="${comment.text}">Это просто чудесно! Самая лучшая книга из всех, что довелось читать.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>

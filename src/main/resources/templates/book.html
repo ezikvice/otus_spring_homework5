@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Отредактировать книгу</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        input:read-only {
+            background: lightgray;
+        }
+
+        .row {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<p><a th:href="@{/books/get}" href="books.html">К списку книг</a></p>
+<form id="view-form" th:action="@{/books/edit(id=${book.id})}" th:method="post" action="book.html">
+    <h1>Информация о книге:</h1>
+
+    <div class="row">
+        <label for="id-input">ID:</label>
+        <input id="id-input" type="text" readonly="readonly" th:value="${book.id}" value="1"/>
+    </div>
+
+    <div class="row">
+        <label for="name-input">Название:</label>
+        <input id="name-input" name="namr" type="text" th:value="${book.name}" value="Как же называется эта книга"/>
+    </div>
+    <div class="row">
+        <label for="description-input">Описание:</label>
+        <input id="description-input" name="description" type="text" th:value="${book.description}"
+               value="книги о вечном"/>
+    </div>
+
+    <div class="row">
+        <button type="submit">Сохранить</button>
+    </div>
+</form>
+
+</body>
+</html>
