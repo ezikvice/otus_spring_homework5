@@ -1,4 +1,4 @@
-package ru.ezikvice.springotus.homework9;
+package ru.ezikvice.springotus.homework10;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,15 +8,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.ezikvice.springotus.homework9.dao.GenreRepository;
-import ru.ezikvice.springotus.homework9.domain.Genre;
+import ru.ezikvice.springotus.homework10.dao.GenreRepository;
+import ru.ezikvice.springotus.homework10.domain.Genre;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @DataMongoTest
-@ComponentScan("ru.ezikvice.springotus.homework9.dao")
+@ComponentScan("ru.ezikvice.springotus.homework10.dao")
 public class GenreDaoTests {
 
     @Autowired

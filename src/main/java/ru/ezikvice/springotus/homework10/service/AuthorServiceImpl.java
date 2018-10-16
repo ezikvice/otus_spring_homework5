@@ -1,9 +1,9 @@
-package ru.ezikvice.springotus.homework9.service;
+package ru.ezikvice.springotus.homework10.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.ezikvice.springotus.homework9.dao.AuthorRepository;
-import ru.ezikvice.springotus.homework9.domain.Author;
+import ru.ezikvice.springotus.homework10.dao.AuthorRepository;
+import ru.ezikvice.springotus.homework10.domain.Author;
 
 import java.util.List;
 import java.util.Set;

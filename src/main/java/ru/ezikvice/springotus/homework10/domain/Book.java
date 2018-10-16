@@ -1,4 +1,4 @@
-package ru.ezikvice.springotus.homework9.domain;
+package ru.ezikvice.springotus.homework10.domain;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;

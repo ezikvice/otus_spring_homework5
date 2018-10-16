@@ -1,6 +1,6 @@
-package ru.ezikvice.springotus.homework9.service;
+package ru.ezikvice.springotus.homework10.service;
 
-import ru.ezikvice.springotus.homework9.domain.Genre;
+import ru.ezikvice.springotus.homework10.domain.Genre;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package ru.ezikvice.springotus.homework9.controller;
+package ru.ezikvice.springotus.homework10.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.ezikvice.springotus.homework9.domain.Genre;
-import ru.ezikvice.springotus.homework9.service.GenreService;
+import ru.ezikvice.springotus.homework10.domain.Genre;
+import ru.ezikvice.springotus.homework10.service.GenreService;
 
 import java.util.List;
 

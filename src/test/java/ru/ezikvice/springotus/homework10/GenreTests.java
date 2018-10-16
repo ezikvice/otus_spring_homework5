@@ -1,12 +1,12 @@
-package ru.ezikvice.springotus.homework9;
+package ru.ezikvice.springotus.homework10;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.ezikvice.springotus.homework9.domain.Genre;
-import ru.ezikvice.springotus.homework9.service.GenreService;
+import ru.ezikvice.springotus.homework10.domain.Genre;
+import ru.ezikvice.springotus.homework10.service.GenreService;
 
 import static org.junit.Assert.assertEquals;
 

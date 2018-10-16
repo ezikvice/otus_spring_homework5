@@ -1,4 +1,4 @@
-package ru.ezikvice.springotus.homework9;
+package ru.ezikvice.springotus.homework10;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package ru.ezikvice.springotus.homework9.controller;
+package ru.ezikvice.springotus.homework10.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

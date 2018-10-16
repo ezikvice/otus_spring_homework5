@@ -1,12 +1,12 @@
-package ru.ezikvice.springotus.homework9;
+package ru.ezikvice.springotus.homework10;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.ezikvice.springotus.homework9.domain.Author;
-import ru.ezikvice.springotus.homework9.service.AuthorService;
+import ru.ezikvice.springotus.homework10.domain.Author;
+import ru.ezikvice.springotus.homework10.service.AuthorService;
 
 import java.util.Set;
 
