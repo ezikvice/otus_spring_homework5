@@ -25,7 +25,7 @@
 <body>
 <p><a th:href="@{/books/get}" href="books.html">К списку книг</a></p>
 <!-- Person edition -->
-<form id="edit-form" th:action="@{/books/edit(id=${book.id})}" th:method="post" action="book-edit.html">
+<form id="edit-form" th:action="@{/books/{id}/edit(id=${book.id})}" th:method="post" action="book-edit.html">
     <h1>Информация о книге:</h1>
 
     <div class="row">
@@ -35,7 +35,7 @@
 
     <div class="row">
         <label for="name-input">Название:</label>
-        <input id="name-input" name="namr" type="text" th:value="${book.name}" value="Как же называется эта книга"/>
+        <input id="name-input" name="name" type="text" th:value="${book.name}" value="Как же называется эта книга"/>
     </div>
     <div class="row">
         <label for="description-input">Описание:</label>
@@ -50,7 +50,7 @@
 
 <div>
     <p>Добавить автора</p>
-    <form id="add-author-form" th:action="@{/books/add-author}" th:method="post" action="book-edit.html">
+    <form id="add-author-form" th:action="@{/books/{id}/add-author(id=${book.id})}" th:method="post" action="book-edit.html">
         <input id="add-author-book-id-input" name="bookId" th:type="hidden" type="text" th:value="${book.id}"
                value="bookId"/>
         <div class="row">
@@ -113,7 +113,7 @@
 
 <div>
     <p>Добавить комментарий</p>
-    <form id="add-comment-form" th:action="@{/books/add-comment}" th:method="post" action="book-edit.html">
+    <form id="add-comment-form" th:action="@{/books/{id}/add-comment(id=${book.id})}" th:method="post" action="book-edit.html">
         <input id="add-comment-book-id-input" name="bookId" th:type="hidden" type="text" th:value="${book.id}"
                value="bookId"/>
         <div class="row">

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.ezikvice.springotus.homework10.domain.Author;
@@ -28,16 +29,16 @@ public class AuthorsController {
         return "authors";
     }
 
-    @GetMapping("/authors/edit")
-    public String viewAuthor(@RequestParam("id") String id, Model model) {
+    @GetMapping("/authors/{id}/edit")
+    public String viewAuthor(@PathVariable("id") String id, Model model) {
         Author author = authorService.findById(id);
         model.addAttribute("author", author);
         return "author-edit";
     }
 
-    @PostMapping("/authors/edit")
-    public String editAuthor(@RequestParam("id") String id,
-                             @RequestParam("namr") String name,
+    @PostMapping("/authors/{id}/edit")
+    public String editAuthor(@PathVariable("id") String id,
+                             @RequestParam("name") String name,
                              Model model) {
         Author author = authorService.findById(id);
         author.setName(name);
@@ -46,8 +47,8 @@ public class AuthorsController {
         return "author-edit";
     }
 
-    @GetMapping("/authors/delete")
-    public String deleteAuthor(@RequestParam("id") String id, Model model) {
+    @GetMapping("/authors/{id}/delete")
+    public String deleteAuthor(@PathVariable("id") String id, Model model) {
         Author author = authorService.findById(id);
         authorService.delete(author);
         List<Author> authors = authorService.findAll();
@@ -61,13 +62,13 @@ public class AuthorsController {
     }
 
     @PostMapping("/authors/add")
-    public String addAuthor(@RequestParam("namr") String name,
+    public String addAuthor(@RequestParam("name") String name,
                             Model model) {
         Author author = new Author(name);
         author.setName(name);
         Author savedAuthor = authorService.save(author);
         model.addAttribute("author", savedAuthor);
-        return "redirect:/authors/edit?id=" + savedAuthor.getId();
+        return "redirect:/authors/" + savedAuthor.getId() + "/edit?id=";
     }
 
 

@@ -25,7 +25,7 @@
 <body>
 <p><a th:href="@{/authors/get}" href="authors.html">К списку авторов</a></p>
 <!-- Person edition -->
-<form id="edit-form" th:action="@{/authors/edit(id=${author.id})}" th:method="post" action="author-edit.html">
+<form id="edit-form" th:action="@{/authors/{id}/edit(id=${author.id})}" th:method="post" action="author-edit.html">
     <h1>Информация об авторе:</h1>
 
     <div class="row">
@@ -35,7 +35,7 @@
 
     <div class="row">
         <label for="holder-input">Имя автора:</label>
-        <input id="holder-input" name="namr" type="text" th:value="${author.name}" value="Васисуалий Пупкиндт"/>
+        <input id="holder-input" name="name" type="text" th:value="${author.name}" value="Васисуалий Пупкиндт"/>
     </div>
 
     <div class="row">

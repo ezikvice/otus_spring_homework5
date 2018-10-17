@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.ezikvice.springotus.homework10.domain.Author;
@@ -38,16 +39,16 @@ public class BooksController {
         return "books";
     }
 
-    @GetMapping("/books/edit")
-    public String editBook(@RequestParam("id") String id, Model model) {
+    @GetMapping("/books/{id}/edit")
+    public String editBook(@PathVariable("id") String id, Model model) {
         Book book = bookService.findById(id);
         model.addAttribute("book", book);
         return "book-edit";
     }
 
-    @PostMapping("/books/edit")
-    public String editBook(@RequestParam("id") String id,
-                           @RequestParam("namr") String name,
+    @PostMapping("/books/{id}/edit")
+    public String editBook(@PathVariable("id") String id,
+                           @RequestParam("name") String name,
                            @RequestParam("description") String description,
                            Model model) {
         Book book = bookService.findById(id);
@@ -58,43 +59,43 @@ public class BooksController {
         return "book-edit";
     }
 
-    @PostMapping("/books/add-author")
-    public String addAuthor(@RequestParam("bookId") String id,
+    @PostMapping("/books/{bookId}/add-author")
+    public String addAuthor(@PathVariable("bookId") String bookId,
                             @RequestParam("authorId") String authorId,
                             Model model) {
-        Book book = bookService.findById(id);
+        Book book = bookService.findById(bookId);
         Author author = authorService.findById(authorId);
         book.addAuthor(author);
         bookService.save(book);
         model.addAttribute("book", book);
-        return "redirect:/books/edit?id=" + book.getId();
+        return "redirect:/books/" + book.getId() + "/edit";
     }
 
-    @PostMapping("/books/add-genre")
-    public String addGenre(@RequestParam("bookId") String id,
+    @PostMapping("/books/{bookId}/add-genre")
+    public String addGenre(@PathVariable("bookId") String bookId,
                            @RequestParam("genreId") String genreId,
                            Model model) {
-        Book book = bookService.findById(id);
+        Book book = bookService.findById(bookId);
         Genre genre = genreService.findById(genreId);
         book.addGenre(genre);
         bookService.save(book);
         model.addAttribute("book", book);
-        return "redirect:/books/edit?id=" + book.getId();
+        return "redirect:/books/" + book.getId() + "/edit";
     }
 
-    @PostMapping("/books/add-comment")
-    public String addComment(@RequestParam("bookId") String id,
+    @PostMapping("/books/{bookId}/add-comment")
+    public String addComment(@PathVariable("bookId") String bookId,
                              @RequestParam("comment") String comment,
                              Model model) {
-        Book book = bookService.findById(id);
+        Book book = bookService.findById(bookId);
         book.addComment(new Comment(comment));
         bookService.save(book);
         model.addAttribute("book", book);
-        return "redirect:/books/edit?id=" + book.getId();
+        return "redirect:/books/" + book.getId() + "/edit";
     }
 
-    @GetMapping("/books/delete")
-    public String deleteBook(@RequestParam("id") String id, Model model) {
+    @GetMapping("/books/{id}/delete")
+    public String deleteBook(@PathVariable("id") String id, Model model) {
         Book book = bookService.findById(id);
         bookService.delete(book);
         return "redirect:/books/get";
@@ -106,14 +107,14 @@ public class BooksController {
     }
 
     @PostMapping("/books/add")
-    public String addBook(@RequestParam("namr") String name,
+    public String addBook(@RequestParam("name") String name,
                           @RequestParam("description") String description,
                           Model model) {
         Book book = new Book(name, description);
         book.setName(name);
         Book savedBook = bookService.save(book);
         model.addAttribute("book", savedBook);
-        return "redirect:/books/edit?id=" + savedBook.getId();
+        return "redirect:/books/" + savedBook.getId() + "/edit";
     }
 
 }

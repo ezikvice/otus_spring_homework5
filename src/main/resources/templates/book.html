@@ -24,7 +24,7 @@
 </head>
 <body>
 <p><a th:href="@{/books/get}" href="books.html">К списку книг</a></p>
-<form id="view-form" th:action="@{/books/edit(id=${book.id})}" th:method="post" action="book.html">
+<form id="view-form" th:action="@{/books/{id}/edit(id=${book.id})}" th:method="post" action="book.html">
     <h1>Информация о книге:</h1>
 
     <div class="row">
@@ -34,7 +34,7 @@
 
     <div class="row">
         <label for="name-input">Название:</label>
-        <input id="name-input" name="namr" type="text" th:value="${book.name}" value="Как же называется эта книга"/>
+        <input id="name-input" name="name" type="text" th:value="${book.name}" value="Как же называется эта книга"/>
     </div>
     <div class="row">
         <label for="description-input">Описание:</label>

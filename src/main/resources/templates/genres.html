@@ -28,8 +28,8 @@
             <td th:text="${genre.name}">Научная фантастика</td>
             <td th:text="${genre.description}">Будущее, космос, вот это всё</td>
             <td>
-                <a th:href="@{/genres/edit(id=${genre.id})}" href="genre-edit.html">Edit</a>
-                <a th:href="@{/genres/delete(id=${genre.id})}" href="genre-edit.html">Delete</a>
+                <a th:href="@{/genres/{id}/edit(id=${genre.id})}" href="genre-edit.html">Редактировать</a>
+                <a th:href="@{/genres/{id}/delete(id=${genre.id})}" href="genre-edit.html">Удалить</a>
             </td>
         </tr>
         </tbody>

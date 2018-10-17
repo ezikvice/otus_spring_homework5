@@ -26,8 +26,8 @@
             <td th:text="${book.id}">1</td>
             <td th:text="${book.name}">Как же называется эта книга</td>
             <td>
-                <a th:href="@{/books/edit(id=${book.id})}" href="book-edit.html">Edit</a>
-                <a th:href="@{/books/delete(id=${book.id})}" href="book-edit.html">Delete</a>
+                <a th:href="@{/books/{id}/edit(id=${book.id})}" href="book-edit.html">Редактировать</a>
+                <a th:href="@{/books/{id}/delete(id=${book.id})}" href="book-edit.html">Удалить</a>
             </td>
         </tr>
         </tbody>

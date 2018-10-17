@@ -26,7 +26,8 @@
             <td th:text="${author.id}">1</td>
             <td th:text="${author.name}">Пушкин Александр Сергеевич</td>
             <td>
-                <a th:href="@{/authors/edit(id=${author.id})}" href="author-edit.html">Edit</a>
+                <a th:href="@{/authors/{id}/edit(id=${author.id})}" href="author-edit.html">Редактировать</a>
+                <a th:href="@{/authors/{id}/delete(id=${author.id})}" href="author-edit.html">Удалить</a>
             </td>
         </tr>
         </tbody>
