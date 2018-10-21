@@ -2,37 +2,73 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Authors</title>
+    <title>Список Авторов</title>
+    <link rel="stylesheet" type="text/css" th:href="@{../js/jquery-ui/jquery-ui.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{../css/main.css}" href="css/main.css"/>
+    <script type="text/javascript" th:src="@{../js/jquery-3.3.1.js}" src="js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" th:src="@{../js/jquery-ui/jquery-ui.js}" src="js/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" th:src="@{../js/author.js}" src="js/author.js"></script>
 </head>
 <body>
 <div>
 
     <a th:href="@{/}" href="index.html">В начало</a>
-    <a th:href="@{/authors/add}" href="author-add.html">добавить автора</a>
+    <a th:href="@{/authors/add}" href="author-add.html" id="author-add">добавить автора</a>
 
 
     <h1>Список авторов:</h1>
 
-    <table class="authors list">
+    <table id="authors-list" class="authors list">
         <thead>
         <tr>
             <th>ID</th>
-            <th>Имя</th>
-            <th></th>
+            <th>Название</th>
+            <th>Редактирование</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="author : ${authors}">
-            <td th:text="${author.id}">1</td>
-            <td th:text="${author.name}">Пушкин Александр Сергеевич</td>
+        <tr th:id="${author.id}" th:each="author : ${authors}" >
+            <td class="author-id" th:text="${author.id}">1</td>
+            <td class="author-name" th:text="${author.name}">Научная фантастика</td>
             <td>
-                <a th:href="@{/authors/{id}/edit(id=${author.id})}" href="author-edit.html">Редактировать</a>
-                <a th:href="@{/authors/{id}/delete(id=${author.id})}" href="author-edit.html">Удалить</a>
+                <a class="author-edit ui-button ui-widget ui-corner-all" th:href="@{/authors/{id}/edit(id=${author.id})}" href="author-edit.html">Редактировать</a>
+                <a class="author-delete ui-button ui-widget ui-corner-all" th:href="@{/authors/{id}/delete(id=${author.id})}" href="author-edit.html">Удалить</a>
             </td>
         </tr>
         </tbody>
     </table>
 
 </div>
+
+<div id="author-add-dialog" hidden="hidden" title="Добавить автора">
+    <form id="form-author-add" class="ui-dialog" th:action="@{/authors/add}" th:method="post" action="author-add.html">
+        <div class="row">
+            <label for="name-add-input">Название:</label>
+            <input id="name-add-input" name="name" type="text"/>
+        </div>
+
+        <div class="row">
+            <button id="author-add-save-form" type="submit">Сохранить</button>
+        </div>
+    </form>
+</div>
+
+<div id="author-edit-dialog" hidden="hidden" title="редактировать автора">
+    <form id="form-author-edit" class="ui-dialog" th:action="@{/authors/edit}" th:method="post" action="author-add.html">
+        <div class="row">
+            <input id="id-edit-input" name="id" type="hidden"/>
+        </div>
+
+        <div class="row">
+            <label for="name-edit-input">Название:</label>
+            <input id="name-edit-input" name="name" type="text"/>
+        </div>
+
+        <div class="row">
+            <button id="author-edit-save-form" type="submit">Сохранить</button>
+        </div>
+    </form>
+</div>
+
 </body>
 </html>

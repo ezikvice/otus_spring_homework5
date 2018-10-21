@@ -46,19 +46,6 @@ public class BooksController {
         return "book-edit";
     }
 
-    @PostMapping("/books/{id}/edit")
-    public String editBook(@PathVariable("id") String id,
-                           @RequestParam("name") String name,
-                           @RequestParam("description") String description,
-                           Model model) {
-        Book book = bookService.findById(id);
-        book.setName(name);
-        book.setDescription(description);
-        bookService.save(book);
-        model.addAttribute("book", book);
-        return "book-edit";
-    }
-
     @PostMapping("/books/{bookId}/add-author")
     public String addAuthor(@PathVariable("bookId") String bookId,
                             @RequestParam("authorId") String authorId,
@@ -101,20 +88,20 @@ public class BooksController {
         return "redirect:/books/get";
     }
 
-    @GetMapping("/books/add")
-    public String viewAddBook(Model model) {
-        return "book-add";
-    }
-
-    @PostMapping("/books/add")
-    public String addBook(@RequestParam("name") String name,
-                          @RequestParam("description") String description,
-                          Model model) {
-        Book book = new Book(name, description);
-        book.setName(name);
-        Book savedBook = bookService.save(book);
-        model.addAttribute("book", savedBook);
-        return "redirect:/books/" + savedBook.getId() + "/edit";
-    }
+//    @GetMapping("/books/add")
+//    public String viewAddBook(Model model) {
+//        return "book-add";
+//    }
+//
+//    @PostMapping("/books/add")
+//    public String addBook(@RequestParam("name") String name,
+//                          @RequestParam("description") String description,
+//                          Model model) {
+//        Book book = new Book(name, description);
+//        book.setName(name);
+//        Book savedBook = bookService.save(book);
+//        model.addAttribute("book", savedBook);
+//        return "redirect:/books/" + savedBook.getId() + "/edit";
+//    }
 
 }

@@ -27,9 +27,8 @@ $(document).ready(function(){
             $.post("/genres/add",
                 $("#form-genre-add").serialize(),
                 function (data) {
-                    // alert(data);
                     addGenreInList(data);
-                    $('#form-genre-add').find("input[type=text], textarea").val("");
+                    $('#form-genre-add').find("input[type=text], textarea").val(""); // clear form
                     $("#genre-add-dialog").dialog("close");
                 },
                 'json');
