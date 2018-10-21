@@ -26,9 +26,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .and()
 //                .authorizeRequests().antMatchers("/").anonymous()
                 .and()
-                .authorizeRequests().antMatchers("/authenticated").authenticated()
+                .authorizeRequests().antMatchers("/**").authenticated()
                 .and()
-                .httpBasic();
+                .formLogin()
+                .defaultSuccessUrl("/")
+                .and()
+                .rememberMe()
+                .key("rememberMeKey")
+                .tokenValiditySeconds(60)
+        ;
     }
 
     @Bean
