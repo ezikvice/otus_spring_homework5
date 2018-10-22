@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/js/jquery-ui/jquery-ui.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" href="css/main.css"/>
+    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.js}" src="js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-ui/jquery-ui.js}" src="js/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" th:src="@{/js/book.js}" src="js/author.js"></script>
+</head>
+<body>
+<div>
+
+    <a th:href="@{/}" href="index.html">В начало</a>
+    <a th:href="@{/books/add}" href="book-add.html" id="book-add">добавить книгу</a>
+
+    <h1>Список литературы:</h1>
+
+    <table id="books-list" class="books list">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Редактирование</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:id="${book.id}"  th:each="book : ${books}">
+            <td class="book-id" th:text="${book.id}">1</td>
+            <td class="book-name" th:text="${book.name}">Как же называется эта книга</td>
+            <td class="book-description" th:text="${book.description}">Книга обо всём</td>
+            <td>
+                <a class="book-info ui-button ui-widget ui-corner-all" th:href="@{/books/{id}/edit(id=${book.id})}" href="book-edit.html">Инфо</a>
+                <a class="book-edit ui-button ui-widget ui-corner-all" th:href="@{/books/{id}/edit(id=${book.id})}" href="book-edit.html">Редактировать</a>
+                <a class="book-delete ui-button ui-widget ui-corner-all" th:href="@{/books/{id}/delete(id=${book.id})}" href="book-edit.html">Удалить</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="book-add-dialog" hidden="hidden" title="Добавить книгу">
+    <form id="form-book-add" class="ui-dialog" th:action="@{/books/add}" th:method="post" action="book-add.html">
+        <div class="row">
+            <label for="name-add-input">Название:</label>
+            <input id="name-add-input" name="name" type="text"/>
+        </div>
+        <div class="row">
+            <label for="description-add-input">Описание:</label>
+            <textarea id="description-add-input" name="description"></textarea>
+        </div>
+
+        <div class="row">
+            <button id="book-add-save-form" type="submit">Сохранить</button>
+        </div>
+    </form>
+</div>
+
+<div id="book-edit-dialog" hidden="hidden" title="Редактировать книгу">
+    <form id="form-book-edit" class="ui-dialog" th:action="@{/books/edit}" th:method="post" action="book-add.html">
+        <div class="row">
+            <input id="id-edit-input" name="id" type="hidden"/>
+        </div>
+
+        <div class="row">
+            <label for="name-edit-input">Название:</label>
+            <input id="name-edit-input" name="name" type="text"/>
+        </div>
+        <div class="row">
+            <label for="description-edit-input">Описание:</label>
+            <textarea id="description-edit-input" name="description"></textarea>
+        </div>
+
+        <div class="row">
+            <button id="book-edit-save-form" type="submit">Сохранить</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

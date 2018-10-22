@@ -1,4 +1,4 @@
-# otus spring homework 8
-homework 8 for Otus springFramework course
+# otus spring homework 12
+homework 12 for Otus springFramework course
 
-MongoDB
+Spring authentication

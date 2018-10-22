@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Список Жанров</title>
+    <link rel="stylesheet" type="text/css" th:href="@{../js/jquery-ui/jquery-ui.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{../css/main.css}" href="css/main.css"/>
+    <script type="text/javascript" th:src="@{../js/jquery-3.3.1.js}" src="js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" th:src="@{../js/jquery-ui/jquery-ui.js}" src="js/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" th:src="@{../js/genre.js}" src="js/genre.js"></script>
+</head>
+<body>
+<div>
+
+    <a th:href="@{/}" href="index.html">В начало</a>
+    <a th:href="@{/genres/add}" href="genre-add.html" id="genre-add">добавить жанр</a>
+
+
+    <h1>Список жанров:</h1>
+
+    <table id="genres-list" class="genres list">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Редактирование</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:id="${genre.id}" th:each="genre : ${genres}" >
+            <td class="genre-id" th:text="${genre.id}">1</td>
+            <td class="genre-name" th:text="${genre.name}">Научная фантастика</td>
+            <td class="genre-description" th:text="${genre.description}">Будущее, космос, вот это всё</td>
+            <td>
+                <a class="genre-edit ui-button ui-widget ui-corner-all" th:href="@{/genres/{id}/edit(id=${genre.id})}" href="genre-edit.html">Редактировать</a>
+                <a class="genre-delete ui-button ui-widget ui-corner-all" th:href="@{/genres/{id}/delete(id=${genre.id})}" href="genre-edit.html">Удалить</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div id="genre-add-dialog" hidden="hidden" title="Добавить жанр">
+    <form id="form-genre-add" class="ui-dialog" th:action="@{/genres/add}" th:method="post" action="genre-add.html">
+        <div class="row">
+            <label for="name-add-input">Название:</label>
+            <input id="name-add-input" name="name" type="text"/>
+        </div>
+        <div class="row">
+            <label for="description-add-input">Описание:</label>
+            <textarea id="description-add-input" name="description"></textarea>
+        </div>
+
+        <div class="row">
+            <button id="genre-add-save-form" type="submit">Сохранить</button>
+        </div>
+    </form>
+</div>
+
+<div id="genre-edit-dialog" hidden="hidden" title="редактировать жанр">
+    <form id="form-genre-edit" class="ui-dialog" th:action="@{/genres/edit}" th:method="post" action="genre-add.html">
+        <div class="row">
+            <input id="id-edit-input" name="id" type="hidden"/>
+        </div>
+
+        <div class="row">
+            <label for="name-edit-input">Название:</label>
+            <input id="name-edit-input" name="name" type="text"/>
+        </div>
+        <div class="row">
+            <label for="description-edit-input">Описание:</label>
+            <textarea id="description-edit-input" name="description"></textarea>
+        </div>
+
+        <div class="row">
+            <button id="genre-edit-save-form" type="submit">Сохранить</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
