@@ -1,4 +1,4 @@
-# otus spring homework 10
-homework 10 for Otus springFramework course
+# otus spring homework 11
+homework 11 for Otus springFramework course
 
-AJAX and REST
+WebFlux
