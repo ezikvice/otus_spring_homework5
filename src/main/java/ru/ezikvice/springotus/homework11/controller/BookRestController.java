@@ -1,8 +1,8 @@
 package ru.ezikvice.springotus.homework11.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 import ru.ezikvice.springotus.homework11.domain.Book;
 import ru.ezikvice.springotus.homework11.service.BookService;
 
@@ -17,28 +17,23 @@ public class BookRestController {
     }
 
     @PostMapping(path = "/books/{id}/edit", produces = "application/json")
-    public Book editBook(@PathVariable("id") String id,
-                         @RequestParam("name") String name,
-                         @RequestParam("description") String description,
-                         Model model) {
-        Book book = bookService.findById(id).block();
-        book.setName(name);
-        book.setDescription(description);
-        bookService.save(book);
-        model.addAttribute("book", book);
-        return book;
+    public Mono<Book> editBook(@PathVariable("id") String id,
+                               @RequestParam("name") String name,
+                               @RequestParam("description") String description) {
+        return bookService.findById(id).flatMap(book -> {
+            book.setName(name);
+            book.setDescription(description);
+            return bookService.save(book);
+        });
     }
 
     @PostMapping(path = "/books/add", produces = "application/json")
     public @ResponseBody
-    Book addBook(@RequestParam("name") String name,
-                 @RequestParam("description") String description,
-                 Model model) {
+    Mono<Book> addBook(@RequestParam("name") String name,
+                       @RequestParam("description") String description) {
         Book book = new Book(name, description);
         book.setName(name);
-        Book savedBook = bookService.save(book).block();
-        model.addAttribute("book", savedBook);
-        return savedBook;
+        return bookService.save(book);
     }
 
 }

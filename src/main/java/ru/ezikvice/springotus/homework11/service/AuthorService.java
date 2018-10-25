@@ -19,6 +19,6 @@ public interface AuthorService {
 
     Flux<Author> findAll();
 
-    Flux<Set<Author>> findByName(String name);
+    Flux<Author> findByName(String name);
 
 }

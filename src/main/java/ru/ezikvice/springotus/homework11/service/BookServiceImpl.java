@@ -56,65 +56,27 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void delete(Book book) {
-        bookRep.delete(book);
+    public Mono<Void> delete(Book book) {
+        return bookRep.delete(book);
     }
 
     @Override
     public void addAuthor(Book book, Author author) {
         book.addAuthor(author);
-        bookRep.save(book);
+        bookRep.save(book).block();
     }
 
-//    @Override
-//    public void addAuthor(String bookId, String authorId) {
-//        Book book = bookRep.findById(bookId);
-//        Author author = authorRep.findById(authorId);
-//        book.addAuthor(author);
-//        bookRep.save(book);
-//    }
+    @Override
+    public void addGenre(Book book, Genre genre) {
+        book.addGenre(genre);
+        bookRep.save(book).block();
+    }
 
-//    @Override
-//    public void addGenre(Book book, Genre genre) {
-//        book.addGenre(genre);
-//        bookRep.save(book);
-//    }
 
-//    @Override
-//    public void addGenre(String bookId, String genreId) {
-//        Book book = bookRep.findById(bookId);
-//        Genre genre = genreRep.findById(genreId);
-//        book.addGenre(genre);
-//        bookRep.save(book);
-//    }
-
-//    @Override
-//    public Set<Genre> getGenres(Book book) {
-//        return book.getGenres();
-//    }
-
-//    @Override
-//    public Set<Genre> getGenres(String bookId) {
-//        Book book = bookRep.findById(bookId);
-//        return book.getGenres();
-//    }
-//
-//    @Override
-//    public Set<Author> getAuthors(String bookId) {
-//        Book book = bookRep.findById(bookId);
-//        return book.getAuthors();
-//    }
-//
-//    @Override
-//    public void addComment(String bookId, String text) {
-//        Book book = bookRep.findById(bookId);
-//        book.addComment(new Comment(text));
-//        bookRep.save(book);
-//    }
-
-//    @Override
-//    public List<Comment> getComments(String bookId) {
-//        Book book = bookRep.findById(bookId);
-//        return book.getComments();
-//    }
+    @Override
+    public void addComment(String bookId, String text) {
+        Book book = bookRep.findById(bookId).block();
+        book.addComment(new Comment(text));
+        bookRep.save(book).block();
+    }
 }

@@ -7,7 +7,6 @@ import reactor.core.publisher.Mono;
 import ru.ezikvice.springotus.homework11.dao.AuthorRepository;
 import ru.ezikvice.springotus.homework11.domain.Author;
 
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -46,7 +45,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Flux<Set<Author>> findByName(String name) {
+    public Flux<Author> findByName(String name) {
         return authorRepository.findByName(name);
     }
 }

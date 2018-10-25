@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import reactor.core.publisher.Flux;
 import ru.ezikvice.springotus.homework11.domain.Author;
 import ru.ezikvice.springotus.homework11.domain.Book;
 import ru.ezikvice.springotus.homework11.domain.Comment;
@@ -85,7 +84,7 @@ public class BooksController {
     @GetMapping("/books/{id}/delete")
     public String deleteBook(@PathVariable("id") String id, Model model) {
         Book book = bookService.findById(id).block();
-        bookService.delete(book);
+        bookService.delete(book).block();
         return "redirect:/books/get";
     }
 }
