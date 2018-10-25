@@ -12,10 +12,22 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/user_db
+#    rest:
+#      base-path: /api
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
   #logging
 logging:
   level:
-    org:
-      springframework:
-        data: debug
+    org.springframework.web: ERROR
+    ru.ezikvice.springotus.homework11 : DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file: logs/app.log
+
