@@ -12,6 +12,16 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/user_db
+  datasource:
+    driverClassName: org.h2.Driver
+
+  h2:
+    console:
+      enabled: true
+      path: /console
+      settings:
+        trace: false
+        web-allow-others: false
 
   #logging
 logging:

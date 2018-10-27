@@ -33,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .rememberMe()
                 .key("rememberMeKey")
-                .tokenValiditySeconds(60)
+                .tokenValiditySeconds(3600)
         ;
     }
 
@@ -55,6 +55,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("admin").password("password").roles("ADMIN");
+                .withUser("admin").password("password").roles("ADMIN", "GENRE_EDITOR", "AUTHOR_EDITOR")
+                .and()
+                .withUser("ug").password("password").roles("GENRE_EDITOR")
+                .and()
+                .withUser("ua").password("password").roles("AUTHOR_EDITOR")
+        ;
     }
 }
