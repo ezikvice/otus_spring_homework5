@@ -78,6 +78,7 @@ $(document).ready(function(){
             '<td class="book-name">' + data.name + '</td>' +
             '<td class="book-description">' + data.description + '</td>' +
             '<td>' +
+            '<a class="book-info ui-button ui-widget ui-corner-all" href="/books/' + data.id + '/edit" href="book-edit.html">Инфо</a>' +
             '<a class="book-edit ui-button ui-widget ui-corner-all" href="/books/' + data.id + '/edit" href="book-edit.html">Редактировать</a>' +
             '<a class="book-delete ui-button ui-widget ui-corner-all" href="/books/' + data.id + '/delete" href="book-edit.html">Удалить</a>' +
             '</td>' +
