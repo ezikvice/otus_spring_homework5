@@ -1,17 +1,21 @@
 package ru.ezikvice.springotus.homework13.dao;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import ru.ezikvice.springotus.homework13.domain.Author;
 
+import java.util.List;
 import java.util.Set;
 
-public interface AuthorRepository extends MongoRepository<Author, Long> {
+public interface AuthorRepository extends CrudRepository<Author, Long> {
 
-    @PreAuthorize("hasRole('ROLE_AUTHOR_EDITOR')")
-    Author save(Author author);
+    //    @PreAuthorize("hasPermission(#author, 'WRITE')")
+    Author save(@Param("author") Author author);
 
-    Author findById(String id);
+//    Author findById(Long id);
 
     Set<Author> findByName(String name);
+
+    //    @PostFilter("hasPermission(filterObject, 'READ')")
+    List<Author> findAll();
 }

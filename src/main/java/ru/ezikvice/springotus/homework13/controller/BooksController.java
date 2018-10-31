@@ -48,7 +48,7 @@ public class BooksController {
 
     @PostMapping("/books/{bookId}/add-author")
     public String addAuthor(@PathVariable("bookId") String bookId,
-                            @RequestParam("authorId") String authorId,
+                            @RequestParam("authorId") Long authorId,
                             Model model) {
         Book book = bookService.findById(bookId);
         Author author = authorService.findById(authorId);

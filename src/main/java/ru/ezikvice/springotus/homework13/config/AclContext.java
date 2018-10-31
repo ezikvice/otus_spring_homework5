@@ -6,6 +6,8 @@ import org.springframework.cache.ehcache.EhCacheFactoryBean;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
 import org.springframework.security.acls.AclPermissionEvaluator;
@@ -63,12 +65,26 @@ public class AclContext {
     }
 
     @Bean
-    public LookupStrategy lookupStrategy() {
-        return new BasicLookupStrategy(dataSource, aclCache(), aclAuthorizationStrategy(), new ConsoleAuditLogger());
+    public ConversionService conversionService() {
+        return new DefaultConversionService();
     }
 
+
     @Bean
-    public JdbcMutableAclService aclService() {
-        return new JdbcMutableAclService(dataSource, lookupStrategy(), aclCache());
+    public LookupStrategy lookupStrategy() {
+        BasicLookupStrategy strategy = new BasicLookupStrategy(dataSource, aclCache(), aclAuthorizationStrategy(), new ConsoleAuditLogger());
+        strategy.setAclClassIdSupported(true);
+
+        return strategy;
+    }
+
+
+    @Bean
+    JdbcMutableAclService aclService() {
+        JdbcMutableAclService service = new JdbcMutableAclService(dataSource, lookupStrategy(), aclCache());
+        service.setAclClassIdSupported(true);
+//        service.setClassIdentityQuery("SELECT @@IDENTITY");
+//        service.setSidIdentityQuery("SELECT @@IDENTITY");
+        return service;
     }
 }

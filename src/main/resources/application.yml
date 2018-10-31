@@ -29,3 +29,4 @@ logging:
     org:
       springframework:
         data: debug
+        security: debug

@@ -11,6 +11,7 @@ import ru.ezikvice.springotus.homework13.domain.Comment;
 import ru.ezikvice.springotus.homework13.domain.Genre;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -65,10 +66,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void addAuthor(String bookId, String authorId) {
+    public void addAuthor(String bookId, Long authorId) {
         Book book = bookRep.findById(bookId);
-        Author author = authorRep.findById(authorId);
-        book.addAuthor(author);
+        Optional<Author> author = authorRep.findById(authorId);
+        book.addAuthor(author.get());
         bookRep.save(book);
     }
 

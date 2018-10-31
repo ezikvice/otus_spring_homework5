@@ -17,7 +17,7 @@ public class AuthorRestController {
     }
 
     @PostMapping(path = "/authors/{id}/edit", produces = "application/json")
-    public Author editAuthor(@PathVariable("id") String id,
+    public Author editAuthor(@PathVariable("id") Long id,
                              @RequestParam("name") String name,
                              Model model) {
         Author author = authorService.findById(id);

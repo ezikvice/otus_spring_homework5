@@ -6,7 +6,6 @@ import ru.ezikvice.springotus.homework13.domain.Genre;
 
 public interface GenreRepository extends MongoRepository<Genre, Long> {
 
-    @PreAuthorize("hasRole('ROLE_GENRE_EDITOR')")
     Genre save(Genre genre);
 
     Genre findById(String id);
