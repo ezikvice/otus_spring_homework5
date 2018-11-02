@@ -17,7 +17,7 @@ public class AuthorRestController {
     }
 
     @PostMapping(path = "/authors/{id}/edit", produces = "application/json")
-    public Author editAuthor(@PathVariable("id") Long id,
+    public Author editAuthor(@PathVariable("id") String id,
                              @RequestParam("name") String name,
                              Model model) {
         Author author = authorService.findById(id);
@@ -32,7 +32,7 @@ public class AuthorRestController {
     Author addAuthor(@RequestParam("name") String name, Model model) {
         Author author = new Author(name);
         author.setName(name);
-        Author savedAuthor = authorService.save(author);
+        Author savedAuthor = authorService.add(author);
         model.addAttribute("author", savedAuthor);
         return savedAuthor;
     }

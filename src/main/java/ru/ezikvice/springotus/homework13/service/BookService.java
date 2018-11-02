@@ -24,7 +24,7 @@ public interface BookService {
 
     void addAuthor(Book book, Author author);
 
-    void addAuthor(String bookId, Long authorId);
+    void addAuthor(String bookId, String authorId);
 
     void addGenre(Book book, Genre genre);
 

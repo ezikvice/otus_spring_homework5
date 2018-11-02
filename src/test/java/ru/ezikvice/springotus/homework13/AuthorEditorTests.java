@@ -30,7 +30,7 @@ public class AuthorEditorTests {
     private MockMvc mockMvc;
 
     @Test
-    @WithMockUser(roles = {"AUTHOR_EDITOR"})
+    @WithMockUser(username = "ua", roles = {"AUTHOR_EDITOR"})
     public void
     givenRoleAuthorEditor_whenSaveAuthor_thenOk() throws Exception {
         this.mockMvc.perform(post("/authors/add")
@@ -39,7 +39,7 @@ public class AuthorEditorTests {
     }
 
     @Test
-    @WithMockUser(roles = {"AUTHOR_EDITOR"})
+    @WithMockUser(username = "ua", roles = {"AUTHOR_EDITOR"})
     public void
     givenRoleAuthorEditor_whenSaveGenre_thenForbidden() throws Exception {
         this.mockMvc.perform(post("/genres/add")

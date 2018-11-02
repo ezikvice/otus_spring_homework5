@@ -66,7 +66,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void addAuthor(String bookId, Long authorId) {
+    public void addAuthor(String bookId, String authorId) {
         Book book = bookRep.findById(bookId);
         Optional<Author> author = authorRep.findById(authorId);
         book.addAuthor(author.get());

@@ -11,9 +11,11 @@ public interface AuthorService {
 
     Author save(Author author);
 
+    Author add(Author author);
+
     void delete(Author author);
 
-    Author findById(Long id);
+    Author findById(String id);
 
     List<Author> findAll();
 

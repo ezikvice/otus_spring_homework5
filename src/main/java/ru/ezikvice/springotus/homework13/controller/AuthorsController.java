@@ -28,7 +28,7 @@ public class AuthorsController {
     }
 
     @GetMapping("/authors/{id}/delete")
-    public String deleteAuthor(@PathVariable("id") Long id, Model model) {
+    public String deleteAuthor(@PathVariable("id") String id, Model model) {
         Author author = authorService.findById(id);
         authorService.delete(author);
         List<Author> authors = authorService.findAll();
