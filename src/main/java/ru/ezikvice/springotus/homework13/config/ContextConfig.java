@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.security.access.PermissionEvaluator;
+import org.springframework.security.acls.AclPermissionEvaluator;
 import org.springframework.security.acls.dao.AclRepository;
 import org.springframework.security.acls.domain.*;
 import org.springframework.security.acls.jdbc.LookupStrategy;
@@ -37,7 +39,7 @@ public class ContextConfig {
 
     @Bean
     public AclAuthorizationStrategy aclAuthorizationStrategy() {
-        return new AclAuthorizationStrategyImpl(new SimpleGrantedAuthority("ROLE_ADMINISTRATOR"));
+        return new AclAuthorizationStrategyImpl(new SimpleGrantedAuthority("ROLE_ACL_ADMINISTRATOR"));
     }
 
     @Bean
@@ -65,5 +67,10 @@ public class ContextConfig {
     @Bean
     public MongoDBMutableAclService aclService() throws UnknownHostException {
         return new MongoDBMutableAclService(aclRepository, lookupStrategy(), aclCache());
+    }
+
+    @Bean
+    public PermissionEvaluator permissionEvaluator() throws UnknownHostException {
+        return new AclPermissionEvaluator(aclService());
     }
 }

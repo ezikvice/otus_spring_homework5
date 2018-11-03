@@ -35,21 +35,6 @@ public class AuthorServiceImpl implements AuthorService {
     @Transactional
     @Override
     public Author save(Author author) {
-
-        ObjectIdentity oi = new ObjectIdentityImpl(Author.class, author.getId());
-        Sid sid = new PrincipalSid("ROLE_AUTHOR_EDITOR");
-        Permission permission = BasePermission.WRITE;
-
-        MutableAcl acl;
-        try {
-            acl = (MutableAcl) aclService.readAclById(oi);
-        } catch (NotFoundException nfe) {
-            acl = aclService.createAcl(oi);
-        }
-
-        acl.insertAce(acl.getEntries().size(), permission, sid, true);
-        aclService.updateAcl(acl);
-
         return authorRepository.save(author);
     }
 

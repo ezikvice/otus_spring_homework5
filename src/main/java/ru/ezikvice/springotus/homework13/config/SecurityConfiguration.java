@@ -3,6 +3,7 @@ package ru.ezikvice.springotus.homework13.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -11,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled=true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
@@ -23,9 +25,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .headers().addHeaderWriter(new XFrameOptionsHeaderWriter(XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
-                .and()
-                .formLogin()
-                .defaultSuccessUrl("/")
+//                .and()
+//                .formLogin()
+//                .defaultSuccessUrl("/")
                 .and()
                 .rememberMe()
                 .key("rememberMeKey")
@@ -51,11 +53,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("admin").password("password").roles("ADMIN", "GENRE_EDITOR", "AUTHOR_EDITOR")
-                .and()
-                .withUser("ug").password("password").roles("GENRE_EDITOR")
+                .withUser("admin").password("password").roles("ADMIN", "GENRE_EDITOR", "AUTHOR_EDITOR", "ACL_ADMINISTRATOR")
                 .and()
                 .withUser("ua").password("password").roles("AUTHOR_EDITOR")
+                .and()
+                .withUser("ug").password("password").roles("GENRE_EDITOR")
         ;
     }
 }
