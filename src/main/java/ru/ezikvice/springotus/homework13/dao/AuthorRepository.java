@@ -10,7 +10,7 @@ import java.util.Set;
 
 public interface AuthorRepository extends MongoRepository<Author, String> {
 
-    @PreAuthorize("hasPermission(#author, admin)")
+    @PreAuthorize("hasPermission(#author, write)")
     Author save(@Param("author") Author author);
 
     Set<Author> findByName(String name);

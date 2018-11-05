@@ -15,7 +15,6 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-//@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRep;
