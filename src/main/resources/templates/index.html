@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Silence in the library</title>
-</head>
 <body>
 <div>
-    <p><a th:href="@{/books/get}" href="books.html">Книги</a> </p>
-    <p><a th:href="@{/authors/get}" href="authors.html">Авторы</a> </p>
-    <p><a th:href="@{/genres/get}" href="genres.html">Жанры</a> </p>
+    <p><a th:href="@{/logout}" href="logout.html">Выход</a></p>
+    <p><a th:href="@{/books/get}" href="books.html">Книги</a></p>
+    <p><a th:href="@{/authors/get}" href="authors.html">Авторы</a></p>
+    <p><a th:href="@{/genres/get}" href="genres.html">Жанры</a></p>
 </div>
 </body>
 </html>

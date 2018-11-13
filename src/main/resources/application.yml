@@ -1,6 +1,3 @@
-# Thanks to Mkyong for mysql and hikari settings
-# http://www.mkyong.com/spring-boot/spring-boot-jdbc-mysql-hikaricp-example/
-
 #disbale Spring banner
 # By quoting the value, you disable yaml's automatic-cast-to-boolean feature.
 # https://github.com/spring-projects/spring-boot/issues/4600#issuecomment-219687848
@@ -12,6 +9,10 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/user_db
+  #  h2
+  h2:
+    console:
+      enabled: true
 
   #logging
 logging:
@@ -19,3 +20,6 @@ logging:
     org:
       springframework:
         data: debug
+        batch: debug
+#        security: debug
+
