@@ -7,25 +7,31 @@ import org.springframework.batch.core.configuration.annotation.EnableBatchProces
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
-import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.batch.item.file.FlatFileItemReader;
-import org.springframework.batch.item.file.FlatFileItemWriter;
-import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
-import org.springframework.batch.item.file.builder.FlatFileItemWriterBuilder;
-import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
-import org.springframework.batch.item.file.transform.DelimitedLineAggregator;
+import org.springframework.batch.item.data.MongoItemReader;
+import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
+import org.springframework.batch.item.database.JdbcBatchItemWriter;
+import org.springframework.batch.item.database.JpaItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.FileSystemResource;
+import org.springframework.data.domain.Sort;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import ru.ezikvice.springotus.homework13.domain.Book;
 
-import java.util.List;
+import javax.sql.DataSource;
+import java.net.UnknownHostException;
+import java.util.HashMap;
 
 @EnableBatchProcessing
 @Configuration
+@EnableAutoConfiguration
 public class BatchConfig {
     private final Logger logger = LoggerFactory.getLogger("Batch");
+
+    private ContextConfig ctx;
 
     @Autowired
     public JobBuilderFactory jobBuilderFactory;
@@ -33,86 +39,78 @@ public class BatchConfig {
     @Autowired
     public StepBuilderFactory stepBuilderFactory;
 
+    public BatchConfig(ContextConfig ctx) {
+        this.ctx = ctx;
+    }
+
     @Bean
-    public FlatFileItemReader<MrPerson> reader() {
-        return new FlatFileItemReaderBuilder<MrPerson>()
-                .name("personItemReader")
-                .resource(new FileSystemResource("entries.csv"))
-                .delimited()
-                .names(new String[]{"name", "age"})
-                .fieldSetMapper(new BeanWrapperFieldSetMapper<MrPerson>() {{
-                    setTargetType(MrPerson.class);
-                }})
+    public DataSource dataSource(){
+        EmbeddedDatabaseBuilder embeddedDatabaseBuilder = new EmbeddedDatabaseBuilder();
+        return embeddedDatabaseBuilder.addScript("classpath:schema-h2.sql")
+                .setType(EmbeddedDatabaseType.H2)
                 .build();
     }
 
     @Bean
-    public ItemProcessor processor() {
-        return new ItemProcessor<MrPerson, MrPerson>() {
+    public MongoItemReader<Book> bookReader() {
+        MongoItemReader<Book> reader = new MongoItemReader<Book>();
+        try {
+            reader.setTemplate(ctx.mongoTemplate());
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        reader.setCollection("book");
+        reader.setTargetType(Book.class);
+        reader.setQuery("{'_id':{$ne:null} }");
+        reader.setSort(new HashMap<String, Sort.Direction>(){{put("id", Sort.Direction.ASC);}});
+        return  reader;
+    }
+
+    @Bean
+    public ItemProcessor bookProcessor() {
+        return new ItemProcessor<Book, Book>() {
             @Override
-            public MrPerson process(MrPerson person) throws Exception {
-                person.onBirthDay();
-                return person;
+            public Book process(Book book) throws Exception {
+                logger.info(book.toString());
+                return book;
             }
         };
     }
 
     @Bean
-    public FlatFileItemWriter writer() {
-        return new FlatFileItemWriterBuilder<>()
-                .name("personItemWriter")
-                .resource(new FileSystemResource("output.csv"))
-                .lineAggregator(new DelimitedLineAggregator<>())
-                .build();
+    public JdbcBatchItemWriter<Book> bookWriter() {
+        JdbcBatchItemWriter<Book> itemWriter = new JdbcBatchItemWriter<Book>();
+        itemWriter.setDataSource(dataSource());
+        itemWriter.setSql("INSERT INTO BOOK (id, name, description) VALUES (:id, :name, :description)");
+        itemWriter.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<Book>());
+        return itemWriter;
     }
 
+//    @Autowired
+//    EntityManagerFactory emf;
+//    @Bean
+//    public JpaItemWriter writer() {
+//        JpaItemWriter writer = new JpaItemWriter();
+//        writer.setEntityManagerFactory(emf);
+//        return writer;
+//    }
+
     @Bean
-    public Job importUserJob(Step step1) {
+    public Job importUserJob(Step step) {
         return jobBuilderFactory.get("importUserJob")
                 .incrementer(new RunIdIncrementer())
-                .flow(step1)
+                .flow(step)
                 .end()
-                .listener(new JobExecutionListener() {
-                    @Override
-                    public void beforeJob(JobExecution jobExecution) {
-                        logger.info("Начало job");
-                    }
-
-                    @Override
-                    public void afterJob(JobExecution jobExecution) {
-                        logger.info("Конец job");
-                    }
-                })
                 .build();
     }
 
     @Bean
-    public Step step1(FlatFileItemWriter writer) {
+    public Step step1(JdbcBatchItemWriter writer) {
         return stepBuilderFactory.get("step1")
                 .chunk(5)
-                .reader(reader())
-                .processor(processor())
+                .reader(bookReader())
+                .processor(bookProcessor())
                 .writer(writer)
-                .listener(new ItemReadListener() {
-                    public void beforeRead() { logger.info("Начало чтения"); }
-                    public void afterRead(Object o) { logger.info("Конец чтения"); }
-                    public void onReadError(Exception e) { logger.info("Ошибка чтения"); }
-                })
-                .listener(new ItemWriteListener() {
-                    public void beforeWrite(List list) { logger.info("Начало записи"); }
-                    public void afterWrite(List list) { logger.info("Конец записи"); }
-                    public void onWriteError(Exception e, List list) { logger.info("Ошибка записи"); }
-                })
-                .listener(new ItemProcessListener() {
-                    public void beforeProcess(Object o) {logger.info("Начало обработки");}
-                    public void afterProcess(Object o, Object o2) {logger.info("Конец обработки");}
-                    public void onProcessError(Object o, Exception e) {logger.info("Ошбка обработки");}
-                })
-                .listener(new ChunkListener() {
-                    public void beforeChunk(ChunkContext chunkContext) {logger.info("Начало пачки");}
-                    public void afterChunk(ChunkContext chunkContext) {logger.info("Конец пачки");}
-                    public void afterChunkError(ChunkContext chunkContext) {logger.info("Ошибка пачки");}
-                })
                 .build();
     }
 }

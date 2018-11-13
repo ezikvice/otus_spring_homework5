@@ -9,6 +9,10 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/user_db
+  #  h2
+  h2:
+    console:
+      enabled: true
 
   #logging
 logging:
@@ -16,4 +20,6 @@ logging:
     org:
       springframework:
         data: debug
-        security: debug
+        batch: debug
+#        security: debug
+
