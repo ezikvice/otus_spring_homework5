@@ -21,6 +21,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import ru.ezikvice.springotus.homework13.domain.Book;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.net.UnknownHostException;
 import java.util.HashMap;
@@ -43,13 +44,13 @@ public class BatchConfig {
         this.ctx = ctx;
     }
 
-    @Bean
-    public DataSource dataSource(){
-        EmbeddedDatabaseBuilder embeddedDatabaseBuilder = new EmbeddedDatabaseBuilder();
-        return embeddedDatabaseBuilder.addScript("classpath:schema-h2.sql")
-                .setType(EmbeddedDatabaseType.H2)
-                .build();
-    }
+//    @Bean
+//    public DataSource dataSource(){
+//        EmbeddedDatabaseBuilder embeddedDatabaseBuilder = new EmbeddedDatabaseBuilder();
+//        return embeddedDatabaseBuilder.addScript("classpath:schema-h2.sql")
+//                .setType(EmbeddedDatabaseType.H2)
+//                .build();
+//    }
 
     @Bean
     public MongoItemReader<Book> bookReader() {
@@ -77,23 +78,23 @@ public class BatchConfig {
         };
     }
 
-    @Bean
-    public JdbcBatchItemWriter<Book> bookWriter() {
-        JdbcBatchItemWriter<Book> itemWriter = new JdbcBatchItemWriter<Book>();
-        itemWriter.setDataSource(dataSource());
-        itemWriter.setSql("INSERT INTO BOOK (id, name, description) VALUES (:id, :name, :description)");
-        itemWriter.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<Book>());
-        return itemWriter;
-    }
-
-//    @Autowired
-//    EntityManagerFactory emf;
 //    @Bean
-//    public JpaItemWriter writer() {
-//        JpaItemWriter writer = new JpaItemWriter();
-//        writer.setEntityManagerFactory(emf);
-//        return writer;
+//    public JdbcBatchItemWriter<Book> bookWriter() {
+//        JdbcBatchItemWriter<Book> itemWriter = new JdbcBatchItemWriter<Book>();
+//        itemWriter.setDataSource(dataSource());
+//        itemWriter.setSql("INSERT INTO BOOK (id, name, description) VALUES (:id, :name, :description)");
+//        itemWriter.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<Book>());
+//        return itemWriter;
 //    }
+
+    @Autowired
+    EntityManagerFactory emf;
+    @Bean
+    public JpaItemWriter writer() {
+        JpaItemWriter writer = new JpaItemWriter();
+        writer.setEntityManagerFactory(emf);
+        return writer;
+    }
 
     @Bean
     public Job importUserJob(Step step) {
@@ -105,7 +106,7 @@ public class BatchConfig {
     }
 
     @Bean
-    public Step step1(JdbcBatchItemWriter writer) {
+    public Step step1(JpaItemWriter writer) {
         return stepBuilderFactory.get("step1")
                 .chunk(5)
                 .reader(bookReader())
