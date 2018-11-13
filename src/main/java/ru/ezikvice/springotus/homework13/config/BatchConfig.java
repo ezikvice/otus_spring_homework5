@@ -68,12 +68,9 @@ public class BatchConfig {
 
     @Bean
     public ItemProcessor bookProcessor() {
-        return new ItemProcessor<Book, Book>() {
-            @Override
-            public Book process(Book book) throws Exception {
-                logger.info(book.toString());
-                return book;
-            }
+        return (ItemProcessor<Book, Book>) book -> {
+            logger.info(book.toString());
+            return book;
         };
     }
 
@@ -85,15 +82,6 @@ public class BatchConfig {
         itemWriter.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<Book>());
         return itemWriter;
     }
-
-//    @Autowired
-//    EntityManagerFactory emf;
-//    @Bean
-//    public JpaItemWriter writer() {
-//        JpaItemWriter writer = new JpaItemWriter();
-//        writer.setEntityManagerFactory(emf);
-//        return writer;
-//    }
 
     @Bean
     public Job importUserJob(Step step) {
