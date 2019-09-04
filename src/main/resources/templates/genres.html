@@ -12,6 +12,7 @@
 <body>
 <div>
 
+    <p><a th:href="@{/logout}" href="logout.html">Выход</a></p>
     <a th:href="@{/}" href="index.html">В начало</a>
     <a th:href="@{/genres/add}" href="genre-add.html" id="genre-add">добавить жанр</a>
 
@@ -28,13 +29,15 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:id="${genre.id}" th:each="genre : ${genres}" >
+        <tr th:id="${genre.id}" th:each="genre : ${genres}">
             <td class="genre-id" th:text="${genre.id}">1</td>
             <td class="genre-name" th:text="${genre.name}">Научная фантастика</td>
             <td class="genre-description" th:text="${genre.description}">Будущее, космос, вот это всё</td>
             <td>
-                <a class="genre-edit ui-button ui-widget ui-corner-all" th:href="@{/genres/{id}/edit(id=${genre.id})}" href="genre-edit.html">Редактировать</a>
-                <a class="genre-delete ui-button ui-widget ui-corner-all" th:href="@{/genres/{id}/delete(id=${genre.id})}" href="genre-edit.html">Удалить</a>
+                <a class="genre-edit ui-button ui-widget ui-corner-all" th:href="@{/genres/{id}/edit(id=${genre.id})}"
+                   href="genre-edit.html">Редактировать</a>
+                <a class="genre-delete ui-button ui-widget ui-corner-all"
+                   th:href="@{/genres/{id}/delete(id=${genre.id})}" href="genre-edit.html">Удалить</a>
             </td>
         </tr>
         </tbody>

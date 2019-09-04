@@ -12,6 +12,7 @@
 <body>
 <div>
 
+    <p><a th:href="@{/logout}" href="logout.html">Выход</a></p>
     <a th:href="@{/}" href="index.html">В начало</a>
     <a th:href="@{/authors/add}" href="author-add.html" id="author-add">добавить автора</a>
 
@@ -27,12 +28,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:id="${author.id}" th:each="author : ${authors}" >
+        <tr th:id="${author.id}" th:each="author : ${authors}">
             <td class="author-id" th:text="${author.id}">1</td>
             <td class="author-name" th:text="${author.name}">Научная фантастика</td>
             <td>
-                <a class="author-edit ui-button ui-widget ui-corner-all" th:href="@{/authors/{id}/edit(id=${author.id})}" href="author-edit.html">Редактировать</a>
-                <a class="author-delete ui-button ui-widget ui-corner-all" th:href="@{/authors/{id}/delete(id=${author.id})}" href="author-edit.html">Удалить</a>
+                <a class="author-edit ui-button ui-widget ui-corner-all"
+                   th:href="@{/authors/{id}/edit(id=${author.id})}" href="author-edit.html">Редактировать</a>
+                <a class="author-delete ui-button ui-widget ui-corner-all"
+                   th:href="@{/authors/{id}/delete(id=${author.id})}" href="author-edit.html">Удалить</a>
             </td>
         </tr>
         </tbody>
@@ -54,7 +57,8 @@
 </div>
 
 <div id="author-edit-dialog" hidden="hidden" title="редактировать автора">
-    <form id="form-author-edit" class="ui-dialog" th:action="@{/authors/edit}" th:method="post" action="author-add.html">
+    <form id="form-author-edit" class="ui-dialog" th:action="@{/authors/edit}" th:method="post"
+          action="author-add.html">
         <div class="row">
             <input id="id-edit-input" name="id" type="hidden"/>
         </div>

@@ -12,6 +12,7 @@
 <body>
 <div>
 
+    <p><a th:href="@{/logout}" href="logout.html">Выход</a></p>
     <a th:href="@{/}" href="index.html">В начало</a>
     <a th:href="@{/books/add}" href="book-add.html" id="book-add">добавить книгу</a>
 
@@ -27,14 +28,17 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:id="${book.id}"  th:each="book : ${books}">
+        <tr th:id="${book.id}" th:each="book : ${books}">
             <td class="book-id" th:text="${book.id}">1</td>
             <td class="book-name" th:text="${book.name}">Как же называется эта книга</td>
             <td class="book-description" th:text="${book.description}">Книга обо всём</td>
             <td>
-                <a class="book-info ui-button ui-widget ui-corner-all" th:href="@{/books/{id}/edit(id=${book.id})}" href="book-edit.html">Инфо</a>
-                <a class="book-edit ui-button ui-widget ui-corner-all" th:href="@{/books/{id}/edit(id=${book.id})}" href="book-edit.html">Редактировать</a>
-                <a class="book-delete ui-button ui-widget ui-corner-all" th:href="@{/books/{id}/delete(id=${book.id})}" href="book-edit.html">Удалить</a>
+                <a class="book-info ui-button ui-widget ui-corner-all" th:href="@{/books/{id}/edit(id=${book.id})}"
+                   href="book-edit.html">Инфо</a>
+                <a class="book-edit ui-button ui-widget ui-corner-all" th:href="@{/books/{id}/edit(id=${book.id})}"
+                   href="book-edit.html">Редактировать</a>
+                <a class="book-delete ui-button ui-widget ui-corner-all" th:href="@{/books/{id}/delete(id=${book.id})}"
+                   href="book-edit.html">Удалить</a>
             </td>
         </tr>
         </tbody>
